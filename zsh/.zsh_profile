@@ -1,0 +1,5 @@
+export CONFIG_HOME=$HOME/.dotfiles/config
+
+source $CONFIG_HOME/alias
+source $CONFIG_HOME/env
+source $CONFIG_HOME/paths

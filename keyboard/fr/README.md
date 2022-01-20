@@ -6,3 +6,4 @@
   - <kbd>`</kbd>
 - Remplacé :
   - <kbd>ctrl</kbd>+<kbd>`</kbd> : <kbd>@</kbd> => <kbd>’</kbd>
+  - <kbd>,</kbd> (numpad) : <kbd>.</kbd>

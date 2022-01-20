@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# zsh
+ln -sv "~/.dotfiles/zsh/.zsh_profile" ~
+ln -sv "~/.dotfiles/zsh/.zshrc" ~
+
+# nvim
+ln -sv "~/.dotfiles/nvim/.vimrc" ~

@@ -1,8 +1,15 @@
 #!/usr/bin/env zsh
 
 # zsh
-ln -sv "~/.dotfiles/zsh/.zsh_profile" ~
-ln -sv "~/.dotfiles/zsh/.zshrc" ~
+ln -vfs ~/.dotfiles/zsh/.zsh_profile ~
+ln -vfs ~/.dotfiles/zsh/.zshrc ~
 
 # nvim
-ln -sv "~/.dotfiles/nvim/.vimrc" ~
+ln -vfs ~/.dotfiles/nvim/.vimrc ~
+
+# tmux
+ln -vfs ~/.dotfiles/tmux/.tmux.conf ~ 
+
+# bin
+
+ln -vfs ~/.dotfiles/.local/.bin ~/.local 

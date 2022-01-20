@@ -14,3 +14,4 @@ pandoc
 jenv
 rust
 tmux
+fzf

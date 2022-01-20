@@ -5,4 +5,4 @@
   - <kbd>~</kbd> 
   - <kbd>`</kbd>
 - Remplacé :
-  - <kbd>ctrl</kbd>+<kbd>`</kbd> : @ => ’
+  - <kbd>ctrl</kbd>+<kbd>`</kbd> : <kbd>@</kbd> => <kbd>’</kbd>

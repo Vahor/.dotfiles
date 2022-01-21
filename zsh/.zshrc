@@ -103,5 +103,5 @@ source $ZSH/oh-my-zsh.sh
 # Customs
 source $HOME/.dotfiles/zsh/.zsh_profile
 DISABLE_MAGIC_FUNCTIONS=true
+DISABLE_AUTO_TITLE=true
 export DOTFILES=$HOME/.dotfiles
-

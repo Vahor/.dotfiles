@@ -25,3 +25,6 @@ set encoding=UTF-8
 set updatetime=500
 
 set shortmess+=c
+
+" scroll tmux
+set mouse=a

@@ -16,6 +16,11 @@ set nu
 set nowrap
 set hidden
 set nohlsearch
+set noswapfile
+set nobackup
+set undodir=~/.config/nvim/undodir
+set undofile
+set encoding=UTF-8
 
 " Nice menu when typing `:find *.py`
 set wildmode=longest,list,full
@@ -79,6 +84,9 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'glepnir/lspsaga.nvim'
 
+" Git
+Plug 'lewis6991/gitsigns.nvim'
+
 Plug 'sbdchd/neoformat'
 
 call plug#end()
@@ -127,6 +135,10 @@ let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 500})
+augroup END
 
 augroup VAHOR
     autocmd!

@@ -53,11 +53,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " Snippets
+Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
 
 " Neovim Tree shitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
+
+Plug 'mbbill/undotree'
 
 " telescope requirements...
 Plug 'nvim-lua/popup.nvim'
@@ -65,17 +68,40 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
+" Plebvim lsp Plugins
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'onsails/lspkind-nvim'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+Plug 'glepnir/lspsaga.nvim'
+
 Plug 'sbdchd/neoformat'
 
 call plug#end()
+
+lua require("vahor")
 
 " Apply theme
 colorscheme tokyonight
 
 let mapleader = " "
+
+nnoremap <silent> <C-f> :silent !tmux neww tmux-sessionizer<CR>
+
 nnoremap <leader>+ :vertical resize +5<CR>
 nnoremap <leader>- :vertical resize -5<CR>
 
+nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <leader>pv :Vex<CR>
+
+
+xnoremap <leader>p "_dP
+
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y gg"+yG
 
 
 nnoremap <leader>x :silent !chmod +x %<CR>
@@ -85,6 +111,11 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+
+
+" Netwr
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
 
 
 augroup VAHOR

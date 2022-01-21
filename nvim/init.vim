@@ -68,6 +68,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
+Plug 'vuciv/vim-bujo'
+
 " Plebvim lsp Plugins
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -103,6 +105,10 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
 
+" delete instead of cut
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
 
 nnoremap <leader>x :silent !chmod +x %<CR>
 
@@ -112,6 +118,10 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
+" vim TODO
+nmap <Leader>tu <Plug>BujoChecknormal
+nmap <Leader>th <Plug>BujoAddnormal
+let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
 
 " Netwr
 let g:netrw_banner = 0

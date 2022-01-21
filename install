@@ -7,10 +7,11 @@ ln -vfs ~/.dotfiles/zsh/.zshrc ~
 # nvim
 ln -vs ~/.dotfiles/nvim/init.vim ~/.config/nvim
 ln -vs ~/.dotfiles/nvim/lua ~/.config/nvim
+ln -vs ~/.dotfiles/nvim/plugin ~/.config/nvim
 
 # tmux
 ln -vfs ~/.dotfiles/tmux/.tmux.conf ~ 
 
 # bin
 
-ln -vfs ~/.dotfiles/.local/.bin ~/.local 
+ln -vfs ~/.dotfiles/.local/bin ~/.local 

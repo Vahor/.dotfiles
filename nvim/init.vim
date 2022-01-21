@@ -10,6 +10,8 @@ set noerrorbells
 set scrolloff=8
 set incsearch
 set noshowmode
+set ignorecase
+set smartcase
 set showcmd
 set signcolumn=yes
 set nu
@@ -96,6 +98,7 @@ lua require("vahor")
 " Apply theme
 colorscheme tokyonight
 
+let loaded_matchparen = 1
 let mapleader = " "
 
 nnoremap <silent> <C-f> :silent !tmux neww tmux-sessionizer<CR>
@@ -106,6 +109,8 @@ nnoremap <leader>- :vertical resize -5<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>pv :Vex<CR>
 
+" Disable Ex mode
+nnoremap <silent> Q <nop>
 
 xnoremap <leader>p "_dP
 
@@ -116,7 +121,6 @@ nnoremap <leader>Y gg"+yG
 " delete instead of cut
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
-
 
 nnoremap <leader>x :silent !chmod +x %<CR>
 

@@ -1,29 +1,5 @@
 set path+=**
 
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-set smartindent
-set exrc
-set relativenumber
-set noerrorbells
-set scrolloff=8
-set incsearch
-set noshowmode
-set ignorecase
-set smartcase
-set showcmd
-set signcolumn=yes
-set nu
-set nowrap
-set hidden
-set nohlsearch
-set noswapfile
-set nobackup
-set undodir=~/.config/nvim/undodir
-set undofile
-set encoding=UTF-8
-
 " Nice menu when typing `:find *.py`
 set wildmode=longest,list,full
 set wildmenu
@@ -81,8 +57,11 @@ Plug 'vuciv/vim-bujo'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
-Plug 'onsails/lspkind-nvim'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'onsails/lspkind-nvim'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'glepnir/lspsaga.nvim'
 
@@ -134,10 +113,6 @@ noremap <Right> <Nop>
 nmap <Leader>tu <Plug>BujoChecknormal
 nmap <Leader>th <Plug>BujoAddnormal
 let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
-
-" Netwr
-let g:netrw_banner = 0
-let g:netrw_winsize = 25
 
 augroup highlight_yank
     autocmd!

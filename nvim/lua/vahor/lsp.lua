@@ -26,22 +26,14 @@ require('lspkind').init({
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			-- For `vsnip` user.
-			-- vim.fn["vsnip#anonymous"](args.body)
-
-			-- For `luasnip` user.
 			require("luasnip").lsp_expand(args.body)
-
-			-- For `ultisnips` user.
-			-- vim.fn["UltiSnips#Anon"](args.body)
 		end,
 	},
+
 	mapping = {
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<CR>'] = cmp.mapping.confirm({ 
-            select = true,
-        })
+        ['<CR>'] = cmp.mapping.confirm({ select = true })
 	},
 
     formatting = {
@@ -64,16 +56,9 @@ cmp.setup({
 
 		{ name = "nvim_lsp" },
 
-		-- For vsnip user.
-		-- { name = 'vsnip' },
+        { name = "luasnip" },
 
-		-- For luasnip user.
-		{ name = "luasnip" },
-
-		-- For ultisnips user.
-		-- { name = 'ultisnips' },
-
-		{ name = "buffer" },
+        { name = "buffer" },
 	},
 })
 
@@ -82,40 +67,15 @@ cmp.setup({
 local tabnine = require('cmp_tabnine.config')
 tabnine:setup({
     max_lines = 1000,
-    max_num_results = 20,
+    max_num_results = 15,
     sort = true,
 	run_on_every_keystroke = true,
 	snippet_placeholder = '..',
 })
 
-
--- Use an on_attach function to only map the following keys after
--- the language server attaches to the current buffer
-local on_attach  = function(client, bufnr)
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-
-    -- Mappings
-    local opts = { noremap=true, silent=true }
-
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-
-    -- Disable Autoformat
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-end
-
 local function config(_config)
 	return vim.tbl_deep_extend("force", {
 		capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-	    on_attach = on_attach,
         flags = {
             debounce_text_change = 150
         }

@@ -13,5 +13,7 @@ ln -vs ~/.dotfiles/nvim/plugin ~/.config/nvim
 ln -vfs ~/.dotfiles/tmux/.tmux.conf ~ 
 
 # bin
-
 ln -vfs ~/.dotfiles/.local/bin ~/.local 
+
+# karabiner
+ln -vfs ~/.dotfiles/keyboard/karabiner/karabiner.json ~/.config/karabiner

@@ -7,10 +7,14 @@ alias vi="nvim"
 alias python="python3"
 
 # Shortcuts
-alias reloadProfile="source ~/.zsh_profile"
-alias reloadShell="exec ${SHELL} -l"
+alias reload_profile="source ~/.zsh_profile"
+alias reload_shell="exec ${SHELL} -l"
 alias rr="rm -rf"
 alias week="date +%V"
 
 alias p="cd ~/Projets"
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+alias rmdsstore="find . -type f -name '*.DS_Store' -ls -delete"
+
+# Show/hide hidden files in the Finder
+alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"

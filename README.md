@@ -5,3 +5,6 @@
 - Iterm title tmux
 - Utiliser git fugitive
 https://stackoverflow.com/questions/1747091/how-do-you-use-vims-quickfix-feature/55117681
+
+- Utiliser stow à la place de l'ajout manuel
+- Ajouter un script pour clear-env

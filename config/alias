@@ -2,6 +2,7 @@
 
 
 alias vim="nvim"
+alias nvimdiff="nvim -d"
 alias vi="nvim"
 alias v="nvim"
 alias python="python3"
@@ -11,6 +12,7 @@ alias reload_profile="source ~/.zsh_profile"
 alias reload_shell="exec ${SHELL} -l"
 alias rr="rm -rf"
 alias week="date +%V"
+alias lla="ll -A"
 
 alias p="cd ~/Projets"
 alias rmdsstore="find . -type f -name '*.DS_Store' -ls -delete"

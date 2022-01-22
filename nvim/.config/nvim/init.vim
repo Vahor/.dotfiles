@@ -88,6 +88,8 @@ nnoremap <leader>- :vertical resize -5<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>pv :Vex<CR>
 
+nnoremap <leader>q :qa<CR>
+
 " Disable Ex mode
 nnoremap <silent> Q <nop>
 

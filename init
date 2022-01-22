@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+export STOW_FOLDERS="bin,nvim,personal,tmux,zsh,git"
+export DOTFILES=$HOME/.dotfiles

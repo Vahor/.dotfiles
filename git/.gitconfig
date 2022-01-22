@@ -25,6 +25,7 @@
 [user]
     name = vahor
     email = me@vahor.fr
+	signingkey = 07A12069FC130CAB
     
 [alias]
     s = status -s

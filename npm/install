@@ -1,4 +1,2 @@
-for i in $(cat list)
-do
-    npm i -g "$i"
-done
+cat list | xargs -p npm i -g
+

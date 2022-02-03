@@ -1,2 +1,7 @@
 typescript-language-server
+git-cz
 commitizen
+yarn
+eslint
+eslint-config-airbnb-base
+eslint-plugin-import

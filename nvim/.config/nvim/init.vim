@@ -67,8 +67,9 @@ Plug 'glepnir/lspsaga.nvim'
 
 " Git
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'tpope/vim-fugitive'
 
-Plug 'sbdchd/neoformat'
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -82,9 +83,6 @@ let mapleader = " "
 
 nnoremap <silent> <C-f> :silent !tmux neww tmux-sessionizer<CR>
 
-nnoremap <leader>+ :vertical resize +5<CR>
-nnoremap <leader>- :vertical resize -5<CR>
-
 nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>pv :Vex<CR>
 
@@ -92,6 +90,14 @@ nnoremap <leader>q :qa<CR>
 
 " Disable Ex mode
 nnoremap <silent> Q <nop>
+
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+nnoremap Y yg$
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
 
 xnoremap <leader>p "_dP
 
@@ -111,9 +117,6 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-" vim TODO
-nmap <Leader>tu <Plug>BujoChecknormal
-nmap <Leader>th <Plug>BujoAddnormal
 let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
 
 augroup highlight_yank
@@ -123,12 +126,7 @@ augroup END
 
 augroup VAHOR
     autocmd!
-    " TODO : Ajouter des types de fichiers
-    autocmd BufWritePre * Neoformat
     " md is markdown
     autocmd BufRead,BufNewFile *.md set filetype=markdown
     autocmd BufRead,BufNewFile *.md set spell
 augroup END
-
-
-

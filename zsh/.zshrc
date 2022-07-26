@@ -21,7 +21,7 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
@@ -105,13 +105,16 @@ source $HOME/.dotfiles/zsh/.zsh_profile
 DISABLE_MAGIC_FUNCTIONS=true
 DISABLE_AUTO_TITLE=true
 export DOTFILES=$HOME/.dotfiles
+autoload -U compinit
 
+compinit
 
+# Jenv
 eval export PATH="/Users/nathan/.jenv/shims:${PATH}"
 export JENV_SHELL=zsh
 export JENV_LOADED=1
 unset JAVA_HOME
-source '/usr/local/Cellar/jenv/0.5.4/libexec/libexec/../completions/jenv.zsh'
+source '/usr/local/Cellar/jenv/0.5.5_2/libexec/libexec/../completions/jenv.zsh'
 jenv rehash 2>/dev/null
 jenv refresh-plugins
 jenv() {
@@ -128,3 +131,19 @@ jenv() {
     command jenv "$command" "$@";;
   esac
 }
+
+. /usr/local/etc/profile.d/z.sh
+
+
+# Scaleway CLI autocomplete initialization.
+eval "$(scw autocomplete script shell=zsh)"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export PNPM_HOME="/Users/nathan/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+

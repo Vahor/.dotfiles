@@ -21,6 +21,7 @@ set nobackup
 set undodir=~/.config/nvim/undodir
 set undofile
 set encoding=UTF-8
+set clipboard=unnamedplus
 
 set updatetime=500
 
@@ -28,3 +29,6 @@ set shortmess+=c
 
 " scroll tmux
 set mouse=a
+syntax enable
+
+set splitright

@@ -14,6 +14,8 @@
     interactive = auto
     grep = auto
     ui = auto
+[fetch]
+    prune = true
 [hub]
     protocol = https
 [github]
@@ -25,25 +27,7 @@
 [user]
     name = vahor
     email = me@vahor.fr
-	signingkey = 07A12069FC130CAB
+    signingkey = 07A12069FC130CAB
     
 [alias]
-    s = status -s
-    amend = commit --amend --reuse-message=HEAD
-
-    # logs latest 20 commits
-    l = log --pretty=oneline -n 20 --graph --abbrev-commit
-    
-    # Pull with submodules
-    p = !"git pull; git submodule foreach git pull origin master"
-    
-    ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
-    pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
-
-    d = "difftool -y"
-
-    df = "!git h | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
-
-    h = log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all
-
-    llog = log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative
+    r = restore --staged

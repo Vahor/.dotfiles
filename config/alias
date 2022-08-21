@@ -2,6 +2,7 @@
 
 
 alias vim="nvim"
+alias vi="nvim"
 alias niff="nvim -d"
 
 alias python="python3"

@@ -27,7 +27,7 @@
 [user]
     name = Vahor
     email = nathan.d0601@gmail.com
-    signingkey = 07A12069FC130CAB
+    signingkey = 82D657F3C6E09210
     
 [alias]
     r = restore --staged

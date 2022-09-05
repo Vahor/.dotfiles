@@ -8,20 +8,21 @@ alias niff="nvim -d"
 alias python="python3"
 alias pip="pip3"
 
-alias p="cd ~/Projets" 
-
 # Shortcuts
 alias reload_profile="source ~/.zsh_profile"
 alias reload_shell="exec ${SHELL} -l"
 alias week="date +%V"
+alias h="cd ~/dev/helosion"
 
+alias l="ls"
+
+alias ll="ls -l"
 alias lla="ll -A"
 
 alias cdd="cd .."
 alias cddd="cd ..."
 
 alias dot="cd ~/.dotfiles"
-alias h="cd ~/Projets/Helosion"
 alias rmdsstore="find . -type f -name '*.DS_Store' -ls -delete"
 
 alias o="open ."

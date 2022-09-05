@@ -1,10 +1,8 @@
 maven
 wget
 htop
-fd
 automake
 cmake
-duf
 gh
 neovim
 vim
@@ -13,8 +11,6 @@ pyenv
 jenv
 rust
 tmux
-fzf
-alfred 
 keycastr 
 iterm2
 stow
@@ -22,6 +18,5 @@ hub
 iina
 gimp
 molotov
-z
 rectangle
 discord

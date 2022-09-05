@@ -8,7 +8,8 @@ export EDITOR="$VIM"
 
 export OPENCV_BUILD_ROOT=~/opencv
 
-source $HOME/.cargo/env
+#source $HOME/.cargo/env
+
 
 addToPath() {
     if [[ "$PATH" != *"$1"* ]]; then

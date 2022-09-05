@@ -20,7 +20,7 @@ alias ll="ls -l"
 alias lla="ll -A"
 
 alias cdd="cd .."
-alias cddd="cd ..."
+alias cddd="cd .. && cd .."
 
 alias dot="cd ~/.dotfiles"
 alias rmdsstore="find . -type f -name '*.DS_Store' -ls -delete"

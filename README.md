@@ -4,3 +4,4 @@
 - LSP : vh ne fonctionne pas
 
 https://starship.rs/
+fzf search terminal history

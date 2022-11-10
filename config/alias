@@ -5,8 +5,10 @@ alias vim="nvim"
 alias vi="nvim"
 alias niff="nvim -d"
 
-alias python="python3"
+#alias python="python3"
 alias pip="pip3"
+
+alias pn="pnpm"
 
 # Shortcuts
 alias reload_profile="source ~/.zsh_profile"

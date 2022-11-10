@@ -9,6 +9,6 @@ truncation_length = 8
 
 [java]
 disabled = false
-
+detect_extensions = ["java", "class", "gradle", "cljs", "cljc"]
 [jobs]
 disabled = false

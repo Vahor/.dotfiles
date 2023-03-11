@@ -9,12 +9,16 @@ alias niff="nvim -d"
 alias pip="pip3"
 
 alias pn="pnpm"
+alias cat="bat"
 
 # Shortcuts
 alias reload_profile="source ~/.zsh_profile"
 alias reload_shell="exec ${SHELL} -l"
 alias week="date +%V"
 alias h="cd ~/dev/helosion"
+alias m="cd ~/dev/mewo"
+
+alias localip="ipconfig getifaddr en0"
 
 alias l="ls"
 
@@ -44,4 +48,6 @@ alias gs="git status"
 alias go="git status"
 alias gh="_glog | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
 alias _glog="git log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all"
+
+alias rmbranch="git branch --v | grep '\[gone\]' | awk '{print $1}' | xargs git branch -D"
 

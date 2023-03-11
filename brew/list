@@ -1,12 +1,13 @@
 maven
+bat
 wget
+--cask shottr
 htop
 automake
 cmake
 gh
 neovim
 vim
-ripgrep
 pyenv
 jenv
 rust

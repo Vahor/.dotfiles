@@ -16,7 +16,7 @@
     grep = auto
     ui = auto
 [fetch]
-    prune = true
+	prune = true
 [hub]
     protocol = https
 [github]

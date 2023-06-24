@@ -24,3 +24,5 @@ rectangle
 discord
 fzf
 direnv
+--cask orbstack
+--cask iterm2

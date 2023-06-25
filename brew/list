@@ -27,3 +27,6 @@ direnv
 --cask orbstack
 --cask iterm2
 --cask 1password
+starship
+mkcert
+--cask firefox

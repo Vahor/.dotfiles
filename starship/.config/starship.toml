@@ -12,3 +12,6 @@ disabled = false
 detect_extensions = ["java", "class", "gradle", "cljs", "cljc"]
 [jobs]
 disabled = false
+
+[battery]
+disabled=true

@@ -1,0 +1,9 @@
+{
+  "showInlineTitle": true,
+  "showLineNumber": true,
+  "strictLineBreaks": false,
+  "showFrontmatter": true,
+  "foldIndent": true,
+  "vimMode": true,
+  "alwaysUpdateLinks": true
+}

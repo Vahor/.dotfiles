@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 
+alias aic="aicommits --type conventional"
 
 alias vim="nvim"
 alias vi="nvim"
 alias niff="nvim -d"
 
-#alias python="python3"
+alias python="python3"
 alias pip="pip3"
 
 alias pn="pnpm"
 alias cat="bat"
+
+alias k=kubectl
 
 # Shortcuts
 alias reload_profile="source ~/.zsh_profile"
@@ -43,11 +46,7 @@ alias urlencode='node --eval "console.log(encodeURIComponent(process.argv[1]))"'
 alias reveal-md="reveal-md --theme night --highlight-theme hybrid --port 1337"
 
 # Git
-alias gcm="git commit -m"
 alias gs="git status"
-alias go="git status"
-alias gh="_glog | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
-alias _glog="git log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all"
 
 alias rmbranch="git branch --v | grep '\[gone\]' | awk '{print $1}' | xargs git branch -D"
 

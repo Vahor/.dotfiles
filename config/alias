@@ -52,3 +52,6 @@ alias rmbranch="git branch --v | grep '\[gone\]' | awk '{print $1}' | xargs git 
 
 # Obsidian
 alias notes="open -a 'Obsidian' ~/dev/notes"
+
+# aws
+alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" ~/.aws/config | fzf)'

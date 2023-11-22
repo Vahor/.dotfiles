@@ -27,7 +27,7 @@
     defaultBranch = main
 [user]
     name = Vahor
-    email = nathan.d0601@gmail.com
+    email = me@vahor.fr
     signingkey = 82D657F3C6E09210
     
 [alias]

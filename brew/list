@@ -30,3 +30,4 @@ direnv
 starship
 mkcert
 --cask firefox
+--cask alt-tab

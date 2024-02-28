@@ -3,3 +3,4 @@ bin/.local/share
 bin/.local/state
 .idea
 *.iml
+*site-packages/

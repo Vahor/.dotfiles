@@ -153,3 +153,11 @@ eval "$(direnv hook zsh)"
 
 . /opt/homebrew/etc/profile.d/z.sh
 
+
+autoload -U compinit
+compinit -i
+
+# bun completions
+[ -s "/Users/nathan/.bun/_bun" ] && source "/Users/nathan/.bun/_bun"
+
+eval "$(esc completion zsh)"

@@ -2,12 +2,12 @@
 
 alias aic="aicommits --type conventional"
 
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
 alias vim="nvim"
 alias vi="nvim"
 alias niff="nvim -d"
-
-alias python="python3"
-alias pip="pip3"
 
 alias pn="pnpm"
 alias cat="bat"
@@ -29,7 +29,8 @@ alias ll="ls -l"
 alias lla="ll -A"
 
 alias cdd="cd .."
-alias cddd="cd .. && cd .."
+alias cddd="cd ../.."
+alias cdddd="cd ../../.."
 
 alias dot="cd ~/.dotfiles"
 alias rmdsstore="find . -type f -name '*.DS_Store' -ls -delete"

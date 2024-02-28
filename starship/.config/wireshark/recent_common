@@ -17,14 +17,14 @@ recent.display_filter: tcp
 
 # Main window geometry.
 # Decimal numbers.
-gui.geometry_main_x: 2560
-gui.geometry_main_y: 480
-gui.geometry_main_width: 1080
-gui.geometry_main_height: 932
+gui.geometry_main_x: 0
+gui.geometry_main_y: 0
+gui.geometry_main_width: 2560
+gui.geometry_main_height: 1412
 
 # Main window maximized.
 # TRUE or FALSE (case-insensitive).
-gui.geometry_main_maximized: FALSE
+gui.geometry_main_maximized: TRUE
 
 # Leftalign Action Buttons.
 # TRUE or FALSE (case-insensitive).
@@ -68,6 +68,24 @@ gui.search_case_sensitive: FALSE
 # Find packet search type.
 # One of: DISPLAY_FILTER, HEX_VALUE, STRING, REGEX
 gui.search_type: DISPLAY_FILTER
+
+# Geometry and maximized state of PacketDialog window.
+# Decimal integers.
+gui.geom.PacketDialog.x: 246
+gui.geom.PacketDialog.y: 130
+gui.geom.PacketDialog.width: 2048
+gui.geom.PacketDialog.height: 1129
+# TRUE or FALSE (case-insensitive).
+gui.geom.PacketDialog.maximized: FALSE
+
+# Geometry and maximized state of PreferencesDialog window.
+# Decimal integers.
+gui.geom.PreferencesDialog.x: 2760
+gui.geom.PreferencesDialog.y: 708
+gui.geom.PreferencesDialog.width: 680
+gui.geom.PreferencesDialog.height: 502
+# TRUE or FALSE (case-insensitive).
+gui.geom.PreferencesDialog.maximized: FALSE
 
 # Custom colors.
 # List of custom colors selected in Qt color picker.

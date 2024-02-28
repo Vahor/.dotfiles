@@ -4,3 +4,4 @@ bin/.local/state
 .idea
 *.iml
 *site-packages/
+.npmrc

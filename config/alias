@@ -5,9 +5,11 @@ alias aic="aicommits --type conventional"
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
-alias vim="nvim"
-alias vi="nvim"
-alias niff="nvim -d"
+# vim
+alias vim="lvim"
+alias vi="lvim"
+alias v="lvim"
+alias niff="lvim -d"
 
 alias pn="pnpm"
 alias cat="bat"
@@ -23,14 +25,15 @@ alias m="cd ~/dev/mewo"
 
 alias localip="ipconfig getifaddr en0"
 
+# dirs
 alias l="ls"
-
 alias ll="ls -l"
 alias lla="ll -A"
 
 alias cdd="cd .."
 alias cddd="cd ../.."
 alias cdddd="cd ../../.."
+alias cddddd="cd ../../../.."
 
 alias dot="cd ~/.dotfiles"
 alias rmdsstore="find . -type f -name '*.DS_Store' -ls -delete"

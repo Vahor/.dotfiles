@@ -54,4 +54,11 @@ lvim.plugins = {
     end,
   },
   "roobert/tailwindcss-colorizer-cmp.nvim",
+
+  -- Telescope
+  {
+  "nvim-telescope/telescope-project.nvim",
+},
 }
+
+require'telescope'.load_extension('project')

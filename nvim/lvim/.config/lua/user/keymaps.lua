@@ -1,12 +1,9 @@
-lvim.keys.normal_mode["p"] = {
- "<cmd>bp<cr>",
-  "prev buffer"
-}
-
-lvim.builtin.which_key.mappings["n"] = {
- "<cmd>bn<CR>", "Next buffer"
-}
-
-lvim.builtin.which_key.mappings["P"] = {
-  "<cmd>lua require'telescope'.extensions.project.project{}<CR>", "Projects"
+lvim.builtin.which_key.mappings["f"] = {
+  name = "Find",
+  p = { "<cmd>lua require'telescope'.extensions.project.project{}<CR>", "Projects" },
+  f = { "<cmd>lua require('telescope.builtin').find_files()<CR>", "Files" },
+  r = { "<cmd>lua require('telescope.builtin').oldfiles()<CR>", "Recent" },
+  g = { "<cmd>lua require('telescope.builtin').live_grep()<CR>", "Grep" },
+  t = { "<cmd>lua require('telescope.builtin').treesitter()<CR>", "Functions" },
+  b = { "<cmd>lua require('telescope.builtin').buffers()<CR>", "Buffers" }
 }

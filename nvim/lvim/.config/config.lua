@@ -57,3 +57,5 @@ lvim.format_on_save.pattern = { "*.py" }
 
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup { { command = "ruff", filetypes = { "python" } } }
+
+

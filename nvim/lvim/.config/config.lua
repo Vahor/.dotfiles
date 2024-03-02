@@ -2,6 +2,8 @@ reload "user.plugins"
 reload "user.options"
 reload "user.keymaps"
 
+-- alpha
+lvim.builtin.alpha.active = false
 
 -- Treesitter
 lvim.builtin.treesitter.matchup.enable = true

@@ -51,7 +51,7 @@ alias reveal-md="reveal-md --theme night --highlight-theme hybrid --port 1337"
 
 # Git
 alias gs="git status"
-
+alias gg="lazygit"
 alias rmbranch="git branch --v | grep '\[gone\]' | awk '{print $1}' | xargs git branch -D"
 
 # Obsidian

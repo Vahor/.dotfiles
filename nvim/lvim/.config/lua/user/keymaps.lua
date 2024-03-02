@@ -1,9 +1,16 @@
-lvim.builtin.which_key.mappings["f"] = {
-  name = "Find",
-  p = { "<cmd>lua require'telescope'.extensions.project.project{}<CR>", "Projects" },
-  f = { "<cmd>lua require('telescope.builtin').find_files()<CR>", "Files" },
-  r = { "<cmd>lua require('telescope.builtin').oldfiles()<CR>", "Recent" },
-  g = { "<cmd>lua require('telescope.builtin').live_grep()<CR>", "Grep" },
-  t = { "<cmd>lua require('telescope.builtin').treesitter()<CR>", "Functions" },
-  b = { "<cmd>lua require('telescope.builtin').buffers()<CR>", "Buffers" }
-}
+-- Find
+lvim.keys.normal_mode["fp"] = ":lua require'telescope'.extensions.project.project{}<CR>"
+lvim.keys.normal_mode["ff"] = ":lua require('telescope.builtin').find_files()<CR>"
+lvim.keys.normal_mode["fr"] = ":lua require('telescope.builtin').oldfiles()<CR>"
+lvim.keys.normal_mode["fg"] = ":lua require('telescope.builtin').live_grep()<CR>"
+lvim.keys.normal_mode["ft"] = ":lua require('telescope.builtin').treesitter()<CR>"
+lvim.keys.normal_mode["fb"] = ":lua require('telescope.builtin').buffers()<CR>"
+
+
+-- Manage buffers
+lvim.keys.normal_mode["["] = ":bp<CR>"
+lvim.keys.normal_mode["]"] = ":bn<CR>"
+
+-- Rename
+lvim.keys.normal_mode["<F18>"] = ":lua require('renamer').rename()<CR>"
+lvim.keys.insert_mode["<F18>"] = ":lua require('renamer').rename()<CR>"

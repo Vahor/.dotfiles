@@ -29,6 +29,6 @@
     name = Vahor
     email = me@vahor.fr
     signingkey = B0D43EE4BCE99118
-    
 [alias]
     r = restore --staged
+    gui = !sh -c 'lazygit'

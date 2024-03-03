@@ -6,10 +6,10 @@ alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
 # vim
-alias vim="lvim"
-alias vi="lvim"
-alias v="lvim"
-alias niff="lvim -d"
+alias vim="nvim"
+alias vi="nvim"
+alias v="nvim"
+alias niff="nvim -d"
 
 alias pn="pnpm"
 alias cat="bat"

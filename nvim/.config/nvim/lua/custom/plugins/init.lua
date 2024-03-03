@@ -17,4 +17,18 @@ return {
       'nvim-lua/plenary.nvim',
     },
   },
+  { 'dmmulroy/ts-error-translator.nvim' },
+  {
+    'zbirenbaum/copilot.lua',
+    opts = {
+      suggestion = {
+        auto_trigger = true,
+        keymap = {
+          accept = '<c-y>',
+          next = '<c-n>',
+          prev = '<c-p>',
+        },
+      },
+    },
+  },
 }

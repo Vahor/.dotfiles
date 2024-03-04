@@ -14,7 +14,6 @@ jenv
 rust
 tmux
 keycastr 
-iterm2
 stow
 hub
 iina
@@ -35,3 +34,4 @@ dive
 yt-dlp
 glow
 lazygit
+--cask alacritty

@@ -18,6 +18,12 @@ return {
     },
   },
   {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
+  {
     'norcalli/nvim-colorizer.lua',
     config = function()
       require('colorizer').setup()

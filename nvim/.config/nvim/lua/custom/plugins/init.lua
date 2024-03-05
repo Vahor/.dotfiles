@@ -58,7 +58,7 @@ return {
       suggestion = {
         auto_trigger = true,
         keymap = {
-          accept = '<c-y>',
+          accept = '<Tab>', -- Tab for copilot and ctrl-y for completion
           next = '<c-n>',
           prev = '<c-p>',
         },

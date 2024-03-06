@@ -14,3 +14,6 @@ size = 13.5
 offset = { x = 0, y = 0 }
 [font.normal]
 family = "JetBrainsMono Nerd Font"
+
+[selection]
+save_to_clipboard = true

@@ -109,7 +109,7 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
+-- vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -165,6 +165,9 @@ vim.keymap.set('n', '<leader>gg', ':LazyGit<CR>', { desc = 'Open LazyGit' })
 
 -- OilVim
 vim.keymap.set('n', '<C-e>', ':Oil<CR>', { desc = 'Open OilVim' })
+
+-- Kill buffer execpt active
+vim.keymap.set('n', '<leader>bd', ':bd<bar>e#<bar>bd#<CR>', { desc = 'Kill buffer except active' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -806,7 +809,7 @@ require('lazy').setup {
     end,
   },
 
-  { import = 'custom.plugins' },
+  { import = 'plugins' },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`

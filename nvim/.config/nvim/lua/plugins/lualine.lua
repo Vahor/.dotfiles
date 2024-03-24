@@ -5,7 +5,14 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       sections = {
-        lualine_c = { { 'harpoon2', indicators = { '1', '2', '3', '4' }, active_indicators = { '[1]', '[2]', '[3]', '[4]' } } },
+        lualine_c = {
+          { 'harpoon2', indicators = { '1', '2', '3', '4' }, active_indicators = { '[1]', '[2]', '[3]', '[4]' } },
+          {
+            'filename',
+            file_status = true,
+            path = 1,
+          },
+        },
       },
     },
   },

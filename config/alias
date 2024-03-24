@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 alias aic="aicommits --type conventional"
 
@@ -52,7 +52,6 @@ alias reveal-md="reveal-md --theme night --highlight-theme hybrid --port 1337"
 # Git
 alias gs="git status"
 alias gg="lazygit"
-alias rmbranch="git branch --v | grep '\[gone\]' | awk '{print $1}' | xargs git branch -D"
 
 # Obsidian
 alias notes="open -a 'Obsidian' ~/dev/notes"
@@ -62,3 +61,13 @@ alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" ~/.a
 
 # pulumi
 alias pul="pulumi"
+
+rmbranch() {
+  branchs=$(git branch --v | grep '\[gone\]' | awk '{print $1}')
+  if [ -z "$branchs" ]; then
+    echo "No branches to delete"
+    return
+  fi
+  echo "Deleting branches:"
+  echo $branchs | xargs -I{} sh -c 'git branch -D {} && echo Deleted {}'
+}

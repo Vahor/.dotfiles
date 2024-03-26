@@ -161,3 +161,4 @@ compinit -i
 [ -s "/Users/nathan/.bun/_bun" ] && source "/Users/nathan/.bun/_bun"
 
 eval "$(esc completion zsh)"
+eval "$(gh copilot alias -- zsh)"

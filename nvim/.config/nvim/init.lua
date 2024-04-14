@@ -84,6 +84,10 @@ vim.keymap.set('n', '<C-e>', ':Oil<CR>', { desc = 'Open OilVim' })
 -- Kill buffer execpt active
 vim.keymap.set('n', '<leader>bd', ':bd<bar>e#<bar>bd#<CR>', { desc = 'Kill buffer except active' })
 
+-- Quickfix (cnext and cprev with leader+j and leader+k)
+vim.keymap.set('n', '<leader>j', ':cnext<CR>', { desc = 'Go to [N]ext quickfix item' })
+vim.keymap.set('n', '<leader>k', ':cprev<CR>', { desc = 'Go to [P]revious quickfix item' })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.

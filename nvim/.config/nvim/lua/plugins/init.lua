@@ -28,33 +28,41 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
   {
+    -- add color on hex, rgb, hsl, css colors
     'norcalli/nvim-colorizer.lua',
     config = function()
       require('colorizer').setup()
     end,
   },
-  { 'dmmulroy/ts-error-translator.nvim' },
-  { 'windwp/nvim-ts-autotag' },
-  { 'windwp/nvim-autopairs' },
   {
-    'hiphish/rainbow-delimiters.nvim',
+    'dmmulroy/ts-error-translator.nvim',
     config = function()
-      local rainbow_delimiters = require 'rainbow-delimiters'
-      require('rainbow-delimiters.setup').setup {
-        strategy = {
-          [''] = rainbow_delimiters.strategy['global'],
-        },
-        query = {
-          tsx = 'rainbow-parens',
-          javascript = 'rainbow-parens',
-        },
-      }
+      require('ts-error-translator').setup()
     end,
   },
   {
-    'L3MON4D3/LuaSnip',
-    -- install jsregexp (optional!).
-    build = 'make install_jsregexp',
+    'windwp/nvim-ts-autotag',
+    opt = {
+      autotag = {
+        enable_close = false,
+      },
+    },
   },
+  { 'windwp/nvim-autopairs' },
+  -- {
+  --   'hiphish/rainbow-delimiters.nvim',
+  --   config = function()
+  --     local rainbow_delimiters = require 'rainbow-delimiters'
+  --     require('rainbow-delimiters.setup').setup {
+  --       strategy = {
+  --         [''] = rainbow_delimiters.strategy['global'],
+  --       },
+  --       query = {
+  --         tsx = 'rainbow-parens',
+  --         javascript = 'rainbow-parens',
+  --       },
+  --     }
+  --   end,
+  -- },
 }
 --

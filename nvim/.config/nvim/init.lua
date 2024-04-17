@@ -129,17 +129,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufRead' }, {
-  desc = 'Fix markdown syntax highlighting',
-  group = vim.api.nvim_create_augroup('markdown-syntax', { clear = true }),
-  pattern = { '*.md', '*.mdx' },
-  callback = function()
-    vim.cmd [[
-      set syntax=markdown
-      set filetype=markdown
-    ]]
-  end,
-})
 --
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info

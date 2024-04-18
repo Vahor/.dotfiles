@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# If you ever copy a github command that starts with $, you can use this script to run it.
+# Example: $ git clone
+# will run the git clone command, without worrying about the $ character.
+# thats nice
+
+"$@"

@@ -12,6 +12,11 @@ vim.api.nvim_create_autocmd({ 'BufRead' }, {
   end,
 })
 
+vim.g.table_mode_corner = '|'
+vim.g.table_mode_map_prefix = '<leader>tm'
+vim.g.table_mode_tableize_map = '<leader>tc'
+vim.g.table_mode_delete_row_map = '<leader>tdr'
+
 return {
   {
     'dhruvasagar/vim-table-mode',

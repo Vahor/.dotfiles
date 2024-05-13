@@ -1,0 +1,11 @@
+#!/bin/bash
+
+result=$(docker run -d -p 6969:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main)
+
+if [ -z "$result" ]; then
+		echo "Failed to start open-webui container"
+fi
+
+echo "open-webui container started"
+sleep 2 
+echo "open http://localhost:6969"

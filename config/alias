@@ -11,7 +11,6 @@ alias vi="nvim"
 alias v="nvim"
 alias niff="nvim -d"
 
-alias pn="pnpm"
 alias cat="bat"
 
 alias k=kubectl

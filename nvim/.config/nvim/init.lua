@@ -78,7 +78,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- LazyGit
 vim.keymap.set('n', '<leader>gg', ':LazyGit<CR>', { desc = 'Open LazyGit' })
-
+vim.keymap.set('n', '<leader>gb', ':Gitsigns toggle_current_line_blame<CR>', { desc = 'Toggle Git [B]lame' })
 -- OilVim
 vim.keymap.set('n', '<C-e>', ':Oil<CR>', { desc = 'Open OilVim' })
 

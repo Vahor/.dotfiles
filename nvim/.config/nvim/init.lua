@@ -81,6 +81,10 @@ vim.keymap.set('n', '<leader>gg', ':LazyGit<CR>', { desc = 'Open LazyGit' })
 vim.keymap.set('n', '<leader>gb', ':Gitsigns toggle_current_line_blame<CR>', { desc = 'Toggle Git [B]lame' })
 -- OilVim
 vim.keymap.set('n', '<C-e>', ':Oil<CR>', { desc = 'Open OilVim' })
+-- Inlay hints
+vim.keymap.set('n', '<leader>h', function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = 'Show inlay [H]ints' })
 
 -- Kill buffer execpt active
 vim.keymap.set('n', '<leader>bd', ':bd<bar>e#<bar>bd#<CR>', { desc = 'Kill buffer except active' })
@@ -166,7 +170,7 @@ require('lazy').setup {
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'JoosepAlviste/nvim-ts-context-commentstring' }, -- Comment Context
+  { 'JoosepAlviste/nvim-ts-context-commentstring' }, -- Comment Context TODO check if required with nvim 0.10
   {
     'numToStr/Comment.nvim',
     config = function()
@@ -378,7 +382,20 @@ require('lazy').setup {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        tsserver = {},
+        tsserver = {
+          init_options = {
+            preferences = {
+              includeInlayParameterNameHints = 'all',
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+              importModuleSpecifierPreference = 'non-relative',
+            },
+          },
+        },
         --
 
         lua_ls = {

@@ -4,5 +4,6 @@ bin/.local/state
 .idea
 *.iml
 *site-packages/
-starship/.config
+starship/.config/**/*
+!starship/.config/starship.toml
 .obsidian/graph.json

@@ -10,8 +10,6 @@ cmake
 gh
 neovim
 vim
-pyenv
-jenv
 rust
 tmux
 keycastr 
@@ -37,3 +35,6 @@ glow
 lazygit
 --cask alacritty
 gum
+mise
+zsh-autosuggestions
+zsh-syntax-highlighting

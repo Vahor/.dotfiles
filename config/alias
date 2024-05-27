@@ -51,6 +51,7 @@ alias reveal-md="reveal-md --theme night --highlight-theme hybrid --port 1337"
 # Git
 alias gs="git status"
 alias gg="lazygit"
+alias gd="git diff"
 
 # Obsidian
 alias notes="open -a 'Obsidian' ~/dev/notes"

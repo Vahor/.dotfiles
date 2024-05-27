@@ -4,3 +4,5 @@ bin/.local/state
 .idea
 *.iml
 *site-packages/
+starship/.config
+.obsidian/graph.json

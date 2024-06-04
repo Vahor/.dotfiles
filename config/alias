@@ -11,6 +11,8 @@ alias vi="nvim"
 alias v="nvim"
 alias niff="nvim -d"
 
+alias po="poetry"
+
 alias cat="bat"
 
 alias k=kubectl

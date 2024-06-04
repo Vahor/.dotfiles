@@ -28,7 +28,13 @@
 [user]
     name = Vahor
     email = me@vahor.fr
-    signingkey = B0D43EE4BCE99118
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINfXaLc96u/JMOECHXklURFyzQiBbphvVAuqbiPaoAeQ
 [alias]
     r = restore --staged
     gui = !sh -c 'lazygit'
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+    gpgsign = true

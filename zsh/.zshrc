@@ -26,3 +26,6 @@ source /opt/homebrew/etc/profile.d/z.sh
 
 # Pulumi esc
 # eval "$(esc completion zsh)"
+
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word

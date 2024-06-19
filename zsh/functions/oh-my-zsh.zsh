@@ -27,5 +27,6 @@ compinit -C
 # ZSH plugins
 # The idea is to download the plugins with brew, and then load them manually
 # plugins=(zsh-autosuggestions zsh-syntax-highlighting)
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

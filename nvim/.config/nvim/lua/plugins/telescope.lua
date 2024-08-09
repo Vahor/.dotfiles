@@ -45,32 +45,36 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- do as well as how to actually do it!
 
     local actions = require 'telescope.actions'
-    local telescopeConfig = require 'telescope.config'
 
-    -- File and text search in hidden files and directories
-    -- Clone the default Telescope configuration
-    local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+    local function filenameFirst(_, path)
+      local tail = vim.fs.basename(path)
+      local parent = vim.fs.dirname(path)
+      if parent == '.' then
+        return tail
+      end
+      return string.format('%s\t\t%s', tail, parent)
+    end
 
-    -- I want to search in hidden/dot files.
-    table.insert(vimgrep_arguments, '--hidden')
-    -- I don't want to search in the `.git` directory.
-    table.insert(vimgrep_arguments, '--glob')
-    table.insert(vimgrep_arguments, '!**/.git/*')
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'TelescopeResults',
+      callback = function(ctx)
+        vim.api.nvim_buf_call(ctx.buf, function()
+          vim.fn.matchadd('TelescopeParent', '\t\t.*$')
+          vim.api.nvim_set_hl(0, 'TelescopeParent', { link = 'Comment' })
+        end)
+      end,
+    })
 
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
     require('telescope').setup {
-      -- You can put your default mappings / updates / etc. in here
-      --  All the info you're looking for is in `:help telescope.setup()`
-      --
-      -- defaults = {
-      --   mappings = {
-      --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-      --   },
-      -- },
       defaults = {
-        file_ignore_patterns = { 'node_modules', '.git' },
-        vimgrep_arguments = vimgrep_arguments,
+        file_ignore_patterns = { 'node_modules' },
+        dynamic_preview_title = true,
+        path_display = filenameFirst,
+        cache_picker = {
+          num_pickers = 10,
+        },
         preview = {
           -- Skip preview for large files
           filesize_limit = 0.1, -- MB
@@ -78,8 +82,16 @@ return { -- Fuzzy Finder (files, lsp, etc)
       },
       pickers = {
         find_files = {
-          -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-          find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
+          follow = true,
+          find_command = {
+            'rg',
+            '--files',
+            '--trim',
+            '--color',
+            'never',
+            '-g',
+            '!.git',
+          },
         },
         buffers = {
           mappings = {

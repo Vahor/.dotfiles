@@ -19,7 +19,8 @@ eval "$(mise activate zsh)"
 eval "$(direnv hook zsh)"
 
 # https://github.com/rupa/z
-source /opt/homebrew/etc/profile.d/z.sh
+prefix=$(brew --prefix)
+source $prefix/etc/profile.d/z.sh
 
 # bun completions
 [ -s "/Users/nathan/.bun/_bun" ] && source "/Users/nathan/.bun/_bun"

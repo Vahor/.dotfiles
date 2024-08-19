@@ -3,6 +3,7 @@ export DOTFILES=$HOME/.dotfiles
 
 export PNPM_HOME="/Users/nathan/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+export PATH="/Users/nathan/.bun/bin:$PATH"
 
 eval "$(starship init zsh)"
 

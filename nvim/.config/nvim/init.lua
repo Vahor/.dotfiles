@@ -396,6 +396,7 @@ require('lazy').setup {
             },
           },
         },
+        marksman = {},
         --
 
         lua_ls = {

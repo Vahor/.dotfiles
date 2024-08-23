@@ -21,8 +21,6 @@ alias k=kubectl
 alias reload_profile="source ~/.zsh_profile"
 alias reload_shell="exec ${SHELL} -l"
 alias week="date +%V"
-alias h="cd ~/dev/helosion"
-alias m="cd ~/dev/mewo"
 
 alias localip="ipconfig getifaddr en0"
 

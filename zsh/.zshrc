@@ -31,3 +31,4 @@ source $prefix/etc/profile.d/z.sh
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+export PATH="$HOME/.spin/bin:$PATH"

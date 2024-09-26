@@ -383,7 +383,7 @@ require('lazy').setup {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        tsserver = {
+        ts_ls = {
           init_options = {
             preferences = {
               includeInlayParameterNameHints = 'all',

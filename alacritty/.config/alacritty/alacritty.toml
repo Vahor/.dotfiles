@@ -1,8 +1,5 @@
-import = [
-  "~/.config/alacritty/catppuccin-mocha.toml"
-]
 
-[shell]
+[terminal.shell]
 args = ["-l", "-c", "tmux attach || tmux"]
 program = "/bin/zsh"
 
@@ -17,3 +14,10 @@ family = "JetBrainsMono Nerd Font"
 
 [selection]
 save_to_clipboard = true
+
+[general]
+import = [
+  "~/.config/alacritty/catppuccin-mocha.toml"
+]
+
+[terminal]

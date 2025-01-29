@@ -62,7 +62,7 @@ return {
                 runtimes = {
                   {
                     name = 'JavaSE-17',
-                    path = home .. '/.local/share/mise/installs/java/17/',
+                    path = home .. '/.local/share/mise/installs/java/17.0.2/',
                   },
                 },
               },
@@ -90,9 +90,9 @@ return {
               .. '/.local/share/eclipse/lombok.jar',
             -- jdtls TODO: maj version
             '-jar',
-            vim.fn.glob '/opt/homebrew/Cellar/jdtls/1.40.0/libexec/plugins/org.eclipse.equinox.launcher_*.jar',
+            vim.fn.glob '/opt/homebrew/Cellar/jdtls/1.41.0/libexec/plugins/org.eclipse.equinox.launcher_*.jar',
             '-configuration',
-            '/opt/homebrew/Cellar/jdtls/1.40.0/libexec/config_mac/',
+            '/opt/homebrew/Cellar/jdtls/1.41.0/libexec/config_mac/',
             '-data',
             workspace_folder,
             '--add-modules=ALL-SYSTEM',

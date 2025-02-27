@@ -16,6 +16,19 @@ return {
     -- Add all matches in the document
     set({ 'n', 'x' }, '<leader>ma', mc.matchAllAddCursors, { desc = '[M]ulticursors: [A]dd all matches' })
 
+    set({ 'n', 'x' }, '<leader>mn', function()
+      mc.matchAddCursor(1)
+    end, { desc = '[M]ulticursors: add [N]ext match' })
+    set({ 'n', 'x' }, '<leader>ms', function()
+      mc.matchSkipCursor(1)
+    end, { desc = '[M]ulticursors: [S]kip skip match' })
+    set({ 'n', 'x' }, '<leader>mN', function()
+      mc.matchAddCursor(-1)
+    end, { desc = '[M]ulticursors: add previous match (inverse of [N])' })
+    set({ 'n', 'x' }, '<leader>mS', function()
+      mc.matchSkipCursor(-1)
+    end, { desc = '[M]ulticursors: skip previous match (inverse of [S])' })
+
     -- Disable cursors
     set('n', '<leader>md', function()
       if mc.hasCursors() then

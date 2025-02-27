@@ -61,8 +61,8 @@ return {
               configuration = {
                 runtimes = {
                   {
-                    name = 'JavaSE-17',
-                    path = home .. '/.local/share/mise/installs/java/17.0.2/',
+                    name = 'JavaSE-21',
+                    path = home .. '/.local/share/mise/installs/java/21/',
                   },
                 },
               },
@@ -75,8 +75,7 @@ return {
           -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
           -- for the full list of options
           cmd = {
-            -- home .. '/.local/share/mise/installs/java/17/bin/java',
-            'java',
+            home .. '/.local/share/mise/installs/java/21/bin/java',
             '-Declipse.application=org.eclipse.jdt.ls.core.id1',
             '-Dosgi.bundles.defaultStartLevel=4',
             '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -90,9 +89,9 @@ return {
               .. '/.local/share/eclipse/lombok.jar',
             -- jdtls TODO: maj version
             '-jar',
-            vim.fn.glob '/opt/homebrew/Cellar/jdtls/1.41.0/libexec/plugins/org.eclipse.equinox.launcher_*.jar',
+            vim.fn.glob '/opt/homebrew/Cellar/jdtls/1.44.0/libexec/plugins/org.eclipse.equinox.launcher_*.jar',
             '-configuration',
-            '/opt/homebrew/Cellar/jdtls/1.41.0/libexec/config_mac/',
+            '/opt/homebrew/Cellar/jdtls/1.44.0/libexec/config_mac/',
             '-data',
             workspace_folder,
             '--add-modules=ALL-SYSTEM',

@@ -43,6 +43,7 @@ return {
         },
         documentation = {
           auto_show = true,
+          auto_show_delay_ms = 100,
           treesitter_highlighting = true,
           window = {
             min_width = 10,

@@ -31,15 +31,13 @@ return {
         },
         menu = {
           enabled = true,
-          min_width = 40,
+          min_width = 30,
           max_height = 15,
           -- winblend = 6,
-          border = 'rounded',
+          scrollbar = false,
           draw = {
             columns = {
-              { 'kind_icon' },
-              { 'label', 'label_description', gap = 1 },
-              { 'source_name' },
+              { 'label', 'kind', gap = 2 },
             },
           },
         },
@@ -50,7 +48,7 @@ return {
             min_width = 10,
             max_width = 100,
             max_height = 20,
-            border = 'rounded',
+            border = 'none',
             -- winblend = 6,
           },
         },

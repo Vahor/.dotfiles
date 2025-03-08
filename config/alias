@@ -35,6 +35,7 @@ alias cdddd="cd ../../.."
 alias cddddd="cd ../../../.."
 
 alias dot="cd ~/.dotfiles"
+alias icloud="cd ~/Library/Mobile\ Documents/com\~apple\~CloudDocs"
 alias rmdsstore="find . -type f -name '*.DS_Store' -ls -delete"
 
 alias o="open ."

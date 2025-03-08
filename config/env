@@ -5,6 +5,7 @@ VIM="nvim"
 
 export GIT_EDITOR="$VIM"
 export EDITOR="$VIM"
+export MANPAGER="$VIM +Man!"
 
 export OPENCV_BUILD_ROOT=~/opencv
 

@@ -54,9 +54,6 @@ alias gs="git status"
 alias gg="lazygit"
 alias gd="git diff"
 
-# Obsidian
-alias notes="open -a 'Obsidian' ~/dev/notes"
-
 # aws
 alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" ~/.aws/config | fzf)'
 

@@ -30,7 +30,23 @@ return {
       -- Or if the parsers are in your $RUNTIMEPATH
       'nvim-treesitter/nvim-treesitter',
 
-      'nvim-tree/nvim-web-devicons',
+      'saghen/blink.cmp',
     },
+    opts = function()
+      local presets = require 'markview.presets'
+      vim.keymap.set('n', '<leader>mt', function()
+        vim.cmd 'Markview splitToggle'
+      end, { desc = '[M]arkview: [T]oggle' })
+
+      return {
+        markdown = {
+          tables = presets.tables.single,
+          horizontal_rules = presets.horizontal_rules.thin,
+        },
+        preview = {
+          enable = false,
+        },
+      }
+    end,
   },
 }

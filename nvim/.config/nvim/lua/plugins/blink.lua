@@ -9,6 +9,9 @@ return {
     opts = {
       sources = {
         default = { 'lsp' },
+        per_filetype = {
+          markdown = { 'markview' },
+        },
       },
 
       signature = { enabled = true },

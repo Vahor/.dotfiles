@@ -17,6 +17,8 @@ zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do

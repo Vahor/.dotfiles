@@ -15,6 +15,7 @@ return {
           json = { 'biome' },
           jsonc = { 'biome' },
           css = { 'biome' },
+          d2 = { 'd2' },
           java = { 'google-java-format' },
         },
       }

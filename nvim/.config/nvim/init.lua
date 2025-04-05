@@ -138,6 +138,14 @@ vim.keymap.set('n', '<leader>d', function()
   vim.diagnostic.open_float { scope = 'cursor' }
 end, { noremap = true, silent = true })
 
+vim.keymap.set('n', '<leader>w"', function()
+  vim.cmd.split()
+end, { desc = 'Split vertically' })
+
+vim.keymap.set('n', '<leader>w%', function()
+  vim.cmd.vsplit()
+end, { desc = 'Split horizontally' })
+
 --
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info

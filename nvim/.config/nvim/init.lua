@@ -426,6 +426,21 @@ require('lazy').setup {
         },
         marksman = {},
 
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              experimental = {
+                classRegex = {
+                  { 'cva\\(([^)]*)\\)', '["\'`]([^"\'`]*).*?["\'`]' },
+                  { 'cx\\(([^)]*)\\)', "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                  { 'cn\\(([^)]*)\\)', '["\'`]([^"\'`]*).*?["\'`]' },
+                  { '([a-zA-Z0-9\\-:]+)' },
+                },
+              },
+            },
+          },
+        },
+
         harper_ls = {
           settings = {
             ['harper-ls'] = {

@@ -30,8 +30,8 @@
     email = me@vahor.fr
     signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINfXaLc96u/JMOECHXklURFyzQiBbphvVAuqbiPaoAeQ
 [alias]
-    r = restore --staged
     gui = !sh -c 'lazygit'
+    open = !sh -c 'gitopen'
 [gpg]
 	format = ssh
 [gpg "ssh"]

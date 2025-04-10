@@ -1,0 +1,31 @@
+#!/bin/bash
+
+error() {
+  echo -e "Error: $1" >&2
+  exit 1
+}
+
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  error "Not in a git repository."
+fi
+
+remote_url=$(git config --get remote.origin.url)
+
+if [ -z "$remote_url" ]; then
+  error "No remote found."
+fi
+
+echo "Opening $remote_url"
+
+
+# transform git@ into https://
+if [[ $remote_url == git@* ]]; then
+  # git@github.com:user/repo.git
+  # remove git@, .git and replace : with /
+  domain=${remote_url#git@}
+  domain=${domain%.git}
+  domain=${domain//:/\/}
+  remote_url="https://$domain"
+fi
+
+open "$remote_url"

@@ -18,14 +18,21 @@ fi
 echo "Opening $remote_url"
 
 
-# transform git@ into https://
+if [[ $remote_url == ssh://* ]]; then
+  # remove ssh:// prefix
+  remote_url=${remote_url#ssh://}
+fi
+
 if [[ $remote_url == git@* ]]; then
   # git@github.com:user/repo.git
   # remove git@, .git and replace : with /
   domain=${remote_url#git@}
-  domain=${domain%.git}
-  domain=${domain//:/\/}
-  remote_url="https://$domain"
+  domain=${domain%%:*}
+ 
+  url_path=${remote_url#*/}
+  url_path=${url_path%.git}
+
+  remote_url="https://$domain/$url_path"
 fi
 
-open "$remote_url"
+open "$remote_url" > /dev/null 2>&1

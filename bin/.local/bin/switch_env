@@ -17,15 +17,19 @@ show_current_env() {
 switch_to_personal() {
     echo "personal" > $env_file
     ln -sf "$ZSH_HOME/.zshrc_personal" "$current_profile_zsh"
-    source "$current_profile_zsh"
-    refresh_tmux
+    reload
 }
 
 switch_to_work() {
     echo "work" > $env_file
     ln -sf "$ZSH_HOME/.zshrc_work" "$current_profile_zsh"
+    reload
+}
+
+reload() {
     source "$current_profile_zsh"
     refresh_tmux
+    echo "switched to $ENV_TYPE"
 }
 
 refresh_tmux() {

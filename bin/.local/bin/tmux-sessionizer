@@ -5,7 +5,14 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/dev/vahor  ~/dev/vahor/pedaki ~/dev/helosion "/Users/nathan/Library/Mobile Documents/iCloud~md~obsidian/Documents"  -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' | fzf)
+    # TODO: share opts
+    if [[ $ENV_TYPE == "personal" ]]; then
+        echo "Personal"
+        selected=$(find ~/dev/vahor  ~/dev/vahor/pedaki ~/dev/helosion "/Users/nathan/Library/Mobile Documents/iCloud~md~obsidian/Documents"  -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' | fzf)
+    elif [[ $ENV_TYPE == "work" ]]; then
+        echo "Work"
+        selected=$(find ~/dev/vahor  -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' | fzf)
+    fi
 fi
 
 if [[ -z $selected ]]; then

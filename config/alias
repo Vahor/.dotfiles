@@ -44,8 +44,8 @@ alias o="open ."
 alias c="code ."
 
 # env
-alias work="switch_env work"
-alias personal="switch_env personal"
+alias work="source switch_env work"
+alias personal="source switch_env personal"
 
 # Show/hide hidden files in the Finder
 alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"

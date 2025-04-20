@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-alias aic="aicommits --type conventional"
-
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
@@ -22,7 +20,7 @@ alias reload_profile="source ~/.zsh_profile"
 alias reload_shell="exec ${SHELL} -l"
 alias week="date +%V"
 
-alias localip="ipconfig getifaddr en0"
+alias localip="ipconfig getifaddr en0 || ipconfig getifaddr en1"
 
 # dirs
 alias l="ls"
@@ -41,7 +39,6 @@ alias steam='cd "/Users/nathan/Library/Application Support/Steam"'
 alias rmdsstore="find . -type f -name '*.DS_Store' -ls -delete"
 
 alias o="open ."
-alias c="code ."
 
 # env
 alias work="source switch_env work"
@@ -53,8 +50,6 @@ alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false &
 
 alias urlencode='node --eval "console.log(encodeURIComponent(process.argv[1]))"'
 
-alias reveal-md="reveal-md --theme night --highlight-theme hybrid --port 1337"
-
 # Git
 alias gs="git status"
 alias gg="lazygit"
@@ -62,6 +57,7 @@ alias gd="git diff"
 
 # aws
 alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" ~/.aws/config | fzf)'
+alias aws-env='aws configure export-credentials --format env'
 
 # pulumi
 alias pul="pulumi"

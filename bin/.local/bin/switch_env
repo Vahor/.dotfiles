@@ -1,0 +1,50 @@
+#!/bin/bash
+
+
+env_file="/tmp/current_env.txt"
+current_profile_zsh="$ZSH_HOME/.zshrc_current"
+
+value=$(cat $env_file 2>/dev/null)
+
+show_current_env() {
+    if [[ "$value" == "work" ]]; then
+      echo "#[fg=red]$value#[default]"
+    elif [[ "$value" == "personal" ]]; then
+      echo "#[fg=yellow]$value#[default]"
+    fi
+}
+
+switch_to_personal() {
+    echo "personal" > $env_file
+    ln -sf "$ZSH_HOME/.zshrc_personal" "$current_profile_zsh"
+    source "$current_profile_zsh"
+    refresh_tmux
+}
+
+switch_to_work() {
+    echo "work" > $env_file
+    ln -sf "$ZSH_HOME/.zshrc_work" "$current_profile_zsh"
+    source "$current_profile_zsh"
+    refresh_tmux
+}
+
+refresh_tmux() {
+    tmux refresh-client -S
+}
+
+if [[ -z "$value" ]]; then
+    switch_to_personal
+fi
+
+
+case "$1" in
+    personal|p)
+        switch_to_personal
+        ;;
+    work|w)
+        switch_to_work
+        ;;
+    show|s)
+        show_current_env
+        ;;
+esac

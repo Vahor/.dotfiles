@@ -25,16 +25,16 @@
     tool = nvimdiff
 [init]
     defaultBranch = main
-[user]
-    name = Vahor
-    email = me@vahor.fr
-    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINfXaLc96u/JMOECHXklURFyzQiBbphvVAuqbiPaoAeQ
-[alias]
-    gui = !sh -c 'lazygit'
-    open = !sh -c 'gitopen'
 [gpg]
 	format = ssh
 [gpg "ssh"]
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [commit]
     gpgsign = true
+[alias]
+    gui = !sh -c 'lazygit'
+    open = !sh -c 'gitopen'
+[user]
+	name = Vahor
+	email = me@vahor.fr
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINfXaLc96u/JMOECHXklURFyzQiBbphvVAuqbiPaoAeQ

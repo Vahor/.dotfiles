@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+export ENV_TYPE=personal
+
+git config --global user.name "Vahor"
+git config --global user.email "me@vahor.fr" 
+git config --global user.signingkey "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINfXaLc96u/JMOECHXklURFyzQiBbphvVAuqbiPaoAeQ"

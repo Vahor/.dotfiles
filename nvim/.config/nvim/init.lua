@@ -83,16 +83,12 @@ vim.keymap.set('n', '<leader>gg', ':LazyGit<CR>', { desc = 'Open LazyGit' })
 -- OilVim
 vim.keymap.set('n', '<C-e>', ':Oil<CR>', { desc = 'Open OilVim' })
 -- Inlay hints
-vim.keymap.set('n', '<leader>h', function()
+vim.keymap.set('n', '<leader>H', function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'Show inlay [H]ints' })
 
 -- Kill buffer execpt active
 vim.keymap.set('n', '<leader>bd', ':bd<bar>e#<bar>bd#<CR>', { desc = 'Kill buffer except active' })
-
--- Quickfix (cnext and cprev with leader+j and leader+k)
-vim.keymap.set('n', '<leader>j', ':cnext<CR>', { desc = 'Go to [N]ext quickfix item' })
-vim.keymap.set('n', '<leader>k', ':cprev<CR>', { desc = 'Go to [P]revious quickfix item' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -136,7 +132,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.keymap.set('n', '<leader>d', function()
   vim.diagnostic.open_float { scope = 'cursor' }
-end, { noremap = true, silent = true })
+end, { noremap = true, silent = true, desc = 'Show diagnostics' })
 
 vim.keymap.set('n', '<leader>w"', function()
   vim.cmd.split()
@@ -266,11 +262,9 @@ require('lazy').setup {
       -- Document existing key chains
       spec = {
         { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-        { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
   },

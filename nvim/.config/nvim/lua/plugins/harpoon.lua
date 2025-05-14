@@ -9,7 +9,7 @@ return {
 
       -- Keymap
       vim.keymap.set('n', '<c-a>', function()
-        harpoon:list():append()
+        harpoon:list():add()
       end)
       vim.keymap.set('n', '<c-space>', function()
         harpoon.ui:toggle_quick_menu(harpoon:list())

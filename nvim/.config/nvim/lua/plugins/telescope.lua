@@ -46,6 +46,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- do as well as how to actually do it!
 
     local actions = require 'telescope.actions'
+    local trouble_telescope = require 'trouble.sources.telescope'
 
     local function filenameFirst(_, path)
       local tail = vim.fs.basename(path)
@@ -79,6 +80,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
         preview = {
           -- Skip preview for large files
           filesize_limit = 0.1, -- MB
+        },
+        mappings = {
+          i = {
+            ['<c-q>'] = trouble_telescope.add,
+          },
+          n = {
+            ['<c-q>'] = trouble_telescope.add,
+          },
         },
       },
       pickers = {

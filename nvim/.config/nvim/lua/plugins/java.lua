@@ -89,9 +89,9 @@ return {
               .. '/.local/share/eclipse/lombok.jar',
             -- jdtls TODO: maj version
             '-jar',
-            vim.fn.glob '/opt/homebrew/Cellar/jdtls/1.44.0/libexec/plugins/org.eclipse.equinox.launcher_*.jar',
+            vim.fn.glob '/opt/homebrew/Cellar/jdtls/1.46.1/libexec/plugins/org.eclipse.equinox.launcher_*.jar',
             '-configuration',
-            '/opt/homebrew/Cellar/jdtls/1.44.0/libexec/config_mac/',
+            '/opt/homebrew/Cellar/jdtls/1.46.1/libexec/config_mac/',
             '-data',
             workspace_folder,
             '--add-modules=ALL-SYSTEM',

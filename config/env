@@ -6,6 +6,7 @@ VIM="nvim"
 export GIT_EDITOR="$VIM"
 export EDITOR="$VIM"
 export MANPAGER="$VIM +Man!"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 export OPENCV_BUILD_ROOT=~/opencv
 

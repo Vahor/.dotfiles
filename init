@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 
-export STOW_FOLDERS="bin,nvim,tmux,zsh,git,npm,starship,alacritty"
+export STOW_FOLDERS="bin,nvim,tmux,zsh,git,npm,starship,alacritty,lazygit"
 export DOTFILES=$HOME/.dotfiles

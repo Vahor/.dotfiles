@@ -1,5 +1,13 @@
 add_newline = true
 
+[username]
+show_always = false
+detect_env_vars = ['!TMUX', 'SSH_CONNECTION']
+
+[hostname]
+ssh_only = false
+detect_env_vars = ['!TMUX', 'SSH_CONNECTION']
+
 [git_commit]
 commit_hash_length = 4
 tag_symbol = "🔖 "

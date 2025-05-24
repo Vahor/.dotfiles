@@ -33,3 +33,4 @@ compinit -C
 prefix="/opt/homebrew"
 source $prefix/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $prefix/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.dotfiles/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh

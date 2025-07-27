@@ -2,6 +2,7 @@ export CONFIG_HOME=$HOME/.dotfiles/config
 export ZSH_HOME=$HOME/.dotfiles/zsh
 
 source $CONFIG_HOME/alias
+source $CONFIG_HOME/alias.personal
 source $CONFIG_HOME/env
 source $CONFIG_HOME/paths
 

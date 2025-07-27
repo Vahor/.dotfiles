@@ -12,6 +12,7 @@ return {
           lua = { 'stylua' },
           python = { 'ruff', 'black', stop_after_first = true },
           javascript = { 'biome' },
+          typescript = { 'biome' },
           json = { 'biome' },
           jsonc = { 'biome' },
           css = { 'biome' },

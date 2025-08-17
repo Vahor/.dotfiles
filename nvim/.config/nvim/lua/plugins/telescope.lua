@@ -1,8 +1,7 @@
 return { -- Fuzzy Finder (files, lsp, etc)
   'nvim-telescope/telescope.nvim',
   event = 'VimEnter',
-  -- TODO: set a tag once https://github.com/nvim-telescope/telescope.nvim/issues/3439 is fixed
-  branch = 'master',
+  branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
     { -- If encountering errors, see telescope-fzf-native README for install instructions
@@ -76,6 +75,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         path_display = filenameFirst,
         cache_picker = {
           num_pickers = 10,
+          ignore_empty_prompt = true,
         },
         preview = {
           -- Skip preview for large files

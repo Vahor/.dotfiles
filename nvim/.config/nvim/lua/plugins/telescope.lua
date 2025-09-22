@@ -70,7 +70,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- See `:help telescope` and `:help telescope.setup()`
     require('telescope').setup {
       defaults = {
-        file_ignore_patterns = { 'node_modules' },
+        file_ignore_patterns = { 'node_modules', 'vendor', 'generated' },
         dynamic_preview_title = true,
         path_display = filenameFirst,
         cache_picker = {

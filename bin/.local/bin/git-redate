@@ -1,0 +1,13 @@
+#!/bin/bash
+# Usage: ./git-redate <number-of-commits>
+
+N=$1
+
+if [ -z "$N" ]; then
+  echo "Usage: $0 <number-of-commits>"
+  exit 1
+fi
+
+# Rebase last N commits and reset their dates
+GIT_COMMITTER_DATE="$(date)" git rebase -i HEAD~$N --exec \
+  'git commit --amend --no-edit --date "$(date)"'

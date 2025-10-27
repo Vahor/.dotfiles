@@ -38,3 +38,5 @@
 	name = Vahor
 	email = me@vahor.fr
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINfXaLc96u/JMOECHXklURFyzQiBbphvVAuqbiPaoAeQ
+[rerere]
+    enabled = true

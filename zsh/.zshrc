@@ -1,3 +1,5 @@
+export TERM=xterm-256color
+
 source $HOME/.dotfiles/zsh/.zsh_profile
 export DOTFILES=$HOME/.dotfiles
 

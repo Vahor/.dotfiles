@@ -1,11 +1,11 @@
 return {
   'marilari88/twoslash-queries.nvim',
   config = function()
-    require('lspconfig')['tsserver'].setup {
+    vim.lsp.config('ts_ls', {
       on_attach = function(client, bufnr)
         require('twoslash-queries').attach(client, bufnr)
       end,
-    }
+    })
     -- Optional: configure the plugin
     require('twoslash-queries').setup {
       multi_line = true, -- print types in multi-line mode

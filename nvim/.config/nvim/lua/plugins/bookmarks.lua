@@ -30,7 +30,7 @@ return {
       require('bookmarks.sign').safe_refresh_signs()
     end, { desc = 'Remove the bookmark at cursor line.' })
 
-    vim.keymap.set('n', '<leader>sm', '<cmd>BookmarksGoto<cr>', { desc = '[S]earch [B]ookmarks' })
+    vim.keymap.set('n', '<leader><leader>', '<cmd>BookmarksGoto<cr>', { desc = 'Search Bookmarks' })
     vim.keymap.set('n', '<leader>mm', '<cmd>BookmarksMark<cr>', { desc = 'Book[m]arks add' })
     vim.keymap.set('n', '<leader>dm', '<cmd>DeleteBookmarkAtCursor<cr>', { desc = 'Book[m]arks [d]elete' })
   end,

@@ -46,6 +46,64 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     local actions = require 'telescope.actions'
     local trouble_telescope = require 'trouble.sources.telescope'
+    local devicons = require 'nvim-web-devicons'
+
+    -- region: resume_or_start
+    local builtin = require 'telescope.builtin'
+    local state = require 'telescope.state'
+
+    -- Parameters:
+    --   @param picker_name (string): A unique identifier for this picker type.
+    --                                This should be a human-readable name that describes
+    --                                what the picker does (e.g., 'Find Files', 'Live Grep').
+    --                                This name is matched against the prompt_title of cached
+    --                                pickers to determine if a resume is possible.
+    --
+    --                                IMPORTANT: This should match either:
+    --                                1. The default prompt_title that Telescope uses for this picker
+    --                                2. The prompt_title you explicitly set in opts
+    --
+    --   @param picker_func (function): The actual Telescope builtin function to call
+    --                                  when starting a fresh picker (e.g., builtin.find_files,
+    --                                  builtin.live_grep). This is only called if no cached
+    --                                  version is found.
+    --
+    --   @param opts (table|nil): Optional configuration table to pass to the picker function.
+    --                            This can include any valid Telescope option like:
+    --                            - prompt_title: Custom title for the picker window
+    --                            - cwd: Directory to search in
+    --                            - grep_open_files: Search only in open files
+    --                            - theme options, preview settings, etc.
+    --
+    --                            If prompt_title is set in opts, it takes precedence
+    --                            over picker_name for matching cached pickers.
+    local function resume_or_start(picker_name, picker_func, opts)
+      return function()
+        opts = opts or {}
+
+        -- Try to find a cached picker with the same name
+        local cached_pickers = state.get_global_key 'cached_pickers' or {}
+        local picker_index = nil
+
+        -- Search through cached pickers to find matching one
+        for i, cached_picker in ipairs(cached_pickers) do
+          if cached_picker.prompt_title == (opts.prompt_title or picker_name) then
+            picker_index = i
+            break
+          end
+        end
+
+        if picker_index then
+          -- Resume the specific cached picker
+          builtin.resume { cache_index = picker_index }
+        else
+          -- Start fresh picker
+          picker_func(opts)
+        end
+      end
+    end
+
+    -- endregion
 
     local function filenameFirst(_, path)
       local tail = vim.fs.basename(path)
@@ -54,6 +112,21 @@ return { -- Fuzzy Finder (files, lsp, etc)
         return tail
       end
       return string.format('%s\t\t%s', tail, parent)
+    end
+
+    local function limit_path_depth(path, max_segments)
+      local parts = vim.split(path, '/')
+      if #parts <= max_segments + 1 then
+        return path
+      end
+      local tail = vim.list_slice(parts, #parts - max_segments, #parts)
+      return table.concat(tail, '/')
+    end
+
+    local function get_icon_for_path(path)
+      local ext = vim.fn.fnamemodify(path, ':e')
+      local icon, hl = devicons.get_icon(path, ext, { default = true })
+      return icon or '', hl or 'TelescopeResultsFileIcon'
     end
 
     vim.api.nvim_create_autocmd('FileType', {
@@ -66,6 +139,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
       end,
     })
 
+    local make_entry = require 'telescope.make_entry'
+    local entry_display = require 'telescope.pickers.entry_display'
+
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
     require('telescope').setup {
@@ -73,9 +149,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
         file_ignore_patterns = { 'node_modules', 'vendor', 'generated' },
         dynamic_preview_title = true,
         path_display = filenameFirst,
+        -- https://github.com/nvim-telescope/telescope.nvim/issues/3202#issuecomment-3335081083
         cache_picker = {
-          num_pickers = 10,
-          ignore_empty_prompt = true,
+          num_pickers = -1, -- Cache unlimited pickers
+          limit_entries = 1000, -- Limit entries per picker (for memory)
+          ignore_empty_prompt = true, -- Don't cache if prompt is empty
         },
         preview = {
           -- Skip preview for large files
@@ -93,15 +171,49 @@ return { -- Fuzzy Finder (files, lsp, etc)
       pickers = {
         find_files = {
           follow = true,
+          hidden = true,
           find_command = {
             'rg',
             '--files',
             '--trim',
-            '--color',
-            'never',
+            '--color=never',
             '-g',
             '!.git',
           },
+        },
+        live_grep = {
+          additional_args = function()
+            return { '--hidden', '-g', '!.git' }
+          end,
+          entry_maker = function(line)
+            local entry = make_entry.gen_from_vimgrep {}(line)
+
+            local path = vim.fn.fnamemodify(entry.filename, ':.') -- relative path
+            local relpath = limit_path_depth(path, 2)
+            local icon, hl = get_icon_for_path(entry.filename)
+            local text = entry.text
+
+            local displayer = entry_display.create {
+              separator = ' ',
+              items = {
+                { width = 2 }, -- icon slot
+                { remaining = true }, -- path (gray)
+                { remaining = true }, -- text
+              },
+            }
+
+            entry.display = function()
+              return displayer {
+                { icon, hl },
+                { relpath, 'Comment' }, -- This makes the path gray
+                text,
+              }
+            end
+
+            entry.ordinal = path .. ' ' .. text
+
+            return entry
+          end,
         },
         buffers = {
           mappings = {
@@ -118,6 +230,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
         },
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = 'smart_case',
+        },
       },
     }
 
@@ -127,27 +245,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
-    vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-    vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-    vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-    vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-    vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-    vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-    vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-    vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-    vim.keymap.set('n', '<leader>so', builtin.oldfiles, { desc = '[S]earch [O]ld Files' })
+    vim.keymap.set('n', '<leader>sf', resume_or_start('Find Files', builtin.find_files), { desc = '[S]earch [F]iles' })
+    vim.keymap.set('n', '<leader>sg', resume_or_start('Live Grep', builtin.live_grep), { desc = '[S]earch by [G]rep' })
+    vim.keymap.set('n', '<leader>sd', resume_or_start('Diagnostics', builtin.diagnostics), { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>st', '<Cmd>TodoTelescope<CR>', { desc = '[S]earch [T]odo' })
-
-    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-
-    -- Slightly advanced example of overriding default behavior and theme
-    vim.keymap.set('n', '<leader>/', function()
-      -- You can pass additional configuration to telescope to change theme, layout, etc.
-      builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-        winblend = 10,
-        previewer = false,
-      })
-    end, { desc = '[/] Fuzzily search in current buffer' })
 
     -- Also possible to pass additional configuration options.
     --  See `:help telescope.builtin.live_grep()` for information about particular keys

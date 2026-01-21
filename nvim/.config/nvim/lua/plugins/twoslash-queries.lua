@@ -1,7 +1,7 @@
 return {
   'marilari88/twoslash-queries.nvim',
   config = function()
-    vim.lsp.config('ts_ls', {
+    vim.lsp.config('tsgo', {
       on_attach = function(client, bufnr)
         require('twoslash-queries').attach(client, bufnr)
       end,

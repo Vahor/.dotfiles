@@ -1,14 +1,14 @@
 return {
   {
     'saghen/blink.cmp',
-    version = '*',
-    dependencies = {},
+    event = 'VimEnter',
+    version = '1.*',
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
       sources = {
-        default = { 'lsp' },
+        default = { 'lsp', 'buffer' },
         per_filetype = {
           markdown = { 'markview' },
         },

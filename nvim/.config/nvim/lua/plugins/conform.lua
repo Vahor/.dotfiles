@@ -1,6 +1,19 @@
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
+    keys = {
+      {
+        '<leader>l',
+        function()
+          require('conform').format { async = true, timeout_ms = 1000, lsp_fallback = 'fallback' }
+          print 'Formatted'
+        end,
+        mode = '',
+        desc = 'Format file or selection',
+      },
+    },
     config = function()
       require('conform').setup {
         notify_on_error = true,
@@ -20,15 +33,6 @@ return {
           java = { 'google-java-format' },
         },
       }
-
-      vim.keymap.set({ 'n', 'v' }, '<leader>l', function()
-        require('conform').format {
-          lsp_fallback = true,
-          async = false,
-          timeout_ms = 1000,
-        }
-        print 'Formatted'
-      end, { desc = 'Format file or selection' })
     end,
   },
 }

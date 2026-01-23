@@ -369,6 +369,8 @@ require('lazy').setup {
         mason = {
           -- clangd = {},
           -- gopls = {},
+          yamlls = {},
+          biome = {},
           pyright = {},
           -- rust_analyzer = {},
           -- intelephense = {},

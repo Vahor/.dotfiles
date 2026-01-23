@@ -245,6 +245,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
+    vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     -- vim.keymap.set('n', '<leader>sf', resume_or_start('Find Files', builtin.find_files), { desc = '[S]earch [F]iles' })
     vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
     vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })

@@ -13,12 +13,8 @@ return {
     -- bring back cursors if you accidentally clear them
     set('n', '<leader>mr', mc.restoreCursors, { desc = '[M]ulticursors: [R]estore cursors' })
 
-    -- Add cursors on visual selection
-    set('x', 'I', mc.insertVisual)
-    set('x', 'A', mc.appendVisual)
-
     -- Add all matches in the document
-    set({ 'n', 'x' }, '<leader>ma', mc.matchAllAddCursors, { desc = '[M]ulticursors: [A]dd all matches' })
+    set({ 'n', 'x' }, '<leader>ma', mc.searchAllAddCursors, { desc = '[M]ulticursors: [A]dd all matches' })
 
     -- Mappings defined in a keymap layer only apply when there are
     -- multiple cursors. This lets you have overlapping mappings.

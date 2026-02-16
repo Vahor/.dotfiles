@@ -1,5 +1,9 @@
 return {
   {
+    'saghen/blink.compat',
+    version = '2.*',
+  },
+  {
     'saghen/blink.cmp',
     event = 'VimEnter',
     version = '1.*',

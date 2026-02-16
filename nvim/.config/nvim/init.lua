@@ -371,7 +371,11 @@ require('lazy').setup {
           -- gopls = {},
           yamlls = {},
           biome = {},
-          pyright = {},
+          -- basedpyright = {
+          pyright = {
+            typeCheckingMode = 'standard',
+            reportMissingImports = false,
+          },
           -- rust_analyzer = {},
           -- intelephense = {},
           jsonls = {},
@@ -394,9 +398,6 @@ require('lazy').setup {
           },
 
           tsgo = {
-            on_attach = function(client, bufnr)
-              print('Inlay hint support: ' .. tostring(client.server_capabilities.inlayHintProvider))
-            end,
             settings = {
               typescript = {
                 inlayHints = inlayHintTs,

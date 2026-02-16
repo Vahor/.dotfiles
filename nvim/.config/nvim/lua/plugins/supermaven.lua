@@ -1,6 +1,7 @@
 return {
   {
     'supermaven-inc/supermaven-nvim',
+    enabled = false, -- testing other plugins
     config = function()
       require('supermaven-nvim').setup {
         log_level = 'off',

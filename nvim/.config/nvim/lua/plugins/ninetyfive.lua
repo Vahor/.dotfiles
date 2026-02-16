@@ -1,0 +1,22 @@
+return {
+  -- 'ninetyfive-gg/ninetyfive.nvim',
+  -- -- enabled = false,
+  -- version = '*', -- use stable version, or `false` for dev version
+  -- config = function()
+  --   require('ninetyfive').setup {
+  --     enable_on_startup = true,
+  --     debug = false,
+  --     server = 'wss://api.ninetyfive.gg',
+  --     mappings = {
+  --       enabled = true,
+  --       accept = '<Tab>',
+  --       accept_edit = '<C-g>',
+  --       reject = '<C-w>',
+  --     },
+  --     indexing = {
+  --       mode = 'ask',
+  --       cache_consent = true,
+  --     },
+  --   }
+  -- end,
+}

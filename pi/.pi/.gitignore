@@ -1,0 +1,6 @@
+agent/sessions
+agent/memory
+agent/mcp-oauth
+agent/mcp-cache.json
+agent/mcp-onboarding.json
+agent/auth.json

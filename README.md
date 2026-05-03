@@ -1,4 +1,5 @@
 https://starship.rs/
+
 fzf search terminal history
 
 
@@ -6,29 +7,23 @@ Append this line to ~/.zshrc to enable fzf keybindings for Zsh:
 
    source /usr/share/doc/fzf/examples/key-bindings.zsh
 
+## Adding a new configuration folder
 
-AI:
-- https://pi.dev/packages/pi-mcp-adapter
-- https://pi.dev/packages/@samfp/pi-memory
+To add a new configuration directory (e.g., `newapp/`) to this dotfiles repository and have it automatically symlinked via `stow`:
 
-- bunx skills@latest add mattpocock/skills
-  - grillme; grill-with-docs 
+1. **Create the directory** in the root of this repo:
+   ```bash
+   mkdir newapp
+   ```
+2. **Add your configuration files** inside that directory.
+3. **Update the `init` script** to include the new folder name in `STOW_FOLDERS`:
+   ```bash
+   # Edit 'init' and add 'newapp' to the comma-separated list
+   export STOW_FOLDERS="...,newapp"
+   ```
+4. **Run the install script**:
+   ```bash
+   ./install
+   ```
 
-
-``` .pi/agent/models.json
-{
-  "providers": {
-    "lmstudio": {
-      "baseUrl": "http://localhost:1234/v1",
-      "api": "openai-completions",
-      "apiKey": "lm-studio",
-      "models": [
-        {
-          "id": "google/gemma-4-26b-a4b",
-          "input": ["text", "image"]
-        }
-      ]
-    }
-  }
-}
-```
+This will use `stow` to symlink the contents of `newapp/` into your home directory (or wherever configured).

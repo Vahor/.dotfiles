@@ -1,0 +1,11 @@
+{
+  "lastChangelogVersion": "0.72.1",
+  "defaultProvider": "lmstudio",
+  "defaultModel": "google/gemma-4-26b-a4b",
+  "defaultThinkingLevel": "medium",
+  "quietStartup": true,
+  "packages": [
+    "npm:pi-memory",
+    "npm:pi-powerline-footer"
+  ]
+}

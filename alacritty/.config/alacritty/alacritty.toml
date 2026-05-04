@@ -20,3 +20,7 @@ import = [
 ]
 
 [terminal]
+
+[keyboard]
+# Shift+Return sends CSI-u Shift+Enter so TUI apps can distinguish it from Option+Enter
+bindings = [{ key = "Return", mods = "Shift", chars = "\u001b[13;2u" }]

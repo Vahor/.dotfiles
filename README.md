@@ -16,6 +16,7 @@ To add a new configuration directory (e.g., `newapp/`) to this dotfiles reposito
    mkdir newapp
    ```
 2. **Add your configuration files** inside that directory.
+   * **Note for hidden directories**: If you want to symlink to a hidden directory in `$HOME` (e.g., `~/.pi`), place the contents inside a subdirectory named after the target (e.g., `newapp/.newapp/`).
 3. **Update the `init` script** to include the new folder name in `STOW_FOLDERS`:
    ```bash
    # Edit 'init' and add 'newapp' to the comma-separated list

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+set -e
+
+DATE=${1:?Usage: $0 YYYY-MM-DD}
+
+YEAR=$(echo $DATE | cut -d'-' -f1)
+MONTH=$(echo $DATE | cut -d'-' -f2)
+DAY=$(echo $DATE | cut -d'-' -f3)
+
+
+ACCOUNT_ID=$(aws sts get-caller-identity --profile "$AWS_PROFILE" --query Account --output text)
+REGION="eu-west-1"
+BUCKET=""
+           
+S3_PATH="s3://$BUCKET/AWSLogs/$ACCOUNT_ID/elasticloadbalancing/$REGION/$YEAR/$MONTH/$DAY/"
+TMP_DIR=$(mktemp -d -t elb-logs-XXXXX)
+LOCAL_DIR="$TMP_DIR/$DATE"
+
+echo "Downloading logs from $S3_PATH..."
+aws s3 cp "$S3_PATH" "$LOCAL_DIR" --recursive
+
+MERGED="$LOCAL_DIR/merged.log"
+echo "Merging and filtering 5xx..."
+zcat "$LOCAL_DIR"/*.gz | awk '$9 >= 500' | python3 -c "
+import sys, urllib.parse
+for line in sys.stdin:
+    print(urllib.parse.unquote(line.rstrip()))
+" > "$MERGED"
+
+echo "Opening in vim... ($MERGED)"
+nvim "$MERGED"

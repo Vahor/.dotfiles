@@ -1,12 +1,13 @@
 {
-  "lastChangelogVersion": "0.72.1",
+  "lastChangelogVersion": "0.74.0",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "xhigh",
   "quietStartup": true,
   "packages": [
-    "npm:pi-memory",
-    "npm:pi-powerline-footer"
+    "npm:pi-powerline-footer",
+    "npm:@vahor/pi-hooks",
+    "npm:@vahor/pi-keymap"
   ],
   "enabledModels": [
     "deepseek/deepseek-v4-pro",

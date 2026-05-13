@@ -11,4 +11,5 @@ Each skill should be organized in its own subdirectory, following the structure:
 ## Sources
 - [effect-ts](https://raw.githubusercontent.com/martinffx/atelier/refs/heads/main/skills/typescript-effect-ts/SKILL.md)
 - [git-worktree](https://raw.githubusercontent.com/martinffx/atelier/refs/heads/main/skills/code-git-worktrees/SKILL.md)
+- [postgres/pg_column_tetris](https://github.com/rogerwelin/pg_column_tetris): PostgreSQL column-ordering guidance for reducing row padding and table size.
 - [web-search](https://github.com/tavily-ai/skills/blob/main/skills/tavily-cli/SKILL.md)

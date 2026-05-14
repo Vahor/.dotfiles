@@ -1,0 +1,98 @@
+#!/bin/bash
+# Copy or move without overwriting.
+# A trailing slash copies/moves a directory's contents instead.
+
+set -euo pipefail
+shopt -s nullglob dotglob
+
+usage() {
+  echo "Usage: ${0##*/} [--mv] <source> [destination-dir]"
+}
+
+die() {
+  echo "$*" >&2
+  exit 1
+}
+
+move=false
+if [[ ${1:-} == --mv ]]; then
+  move=true
+  shift
+fi
+
+case "${1:-}" in
+  -h|--help) usage; exit 0 ;;
+esac
+
+(( $# >= 1 && $# <= 2 )) || { usage >&2; exit 1; }
+
+src=$1
+dest_dir=${2:-.}
+[[ $dest_dir == / ]] || dest_dir=${dest_dir%/}
+
+[[ -e $src ]] || die "Error: '$src' does not exist"
+
+unique_dest() {
+  local src=$1 dir=$2 name base ext dest i=1
+
+  name=${src##*/}
+  base=$name
+  ext=
+
+  if [[ (! -d $src || -L $src) && $name == *.* && $name != .* ]]; then
+    base=${name%.*}
+    ext=.${name##*.}
+  fi
+
+  [[ $base =~ ^(.+)\ copy(\ [0-9]+)?$ ]] && base=${BASH_REMATCH[1]}
+
+  dest=$dir/$base$ext
+  while [[ -e $dest ]]; do
+    dest=$dir/$base" ($i)"$ext
+    ((i++))
+  done
+
+  printf '%s\n' "$dest"
+}
+
+copy_contents() {
+  local src_dir=${1%/} dest_dir=$2 warn=${3:-false} item found=false
+  [[ -n $src_dir ]] || src_dir=/
+
+  mkdir -p "$dest_dir"
+  for item in "$src_dir"/*; do
+    found=true
+    copy_one "$item" "$dest_dir"
+  done
+
+  if ! $found && $warn; then
+    echo "Warning: '$src_dir' is empty"
+  fi
+}
+
+copy_one() {
+  local src=$1 dest_dir=$2 dest
+
+  if [[ -d $src && $src == */ ]]; then
+    copy_contents "$src" "$dest_dir" true
+    return
+  fi
+
+  mkdir -p "$dest_dir"
+  dest=$(unique_dest "$src" "$dest_dir")
+  echo "cpdup: $src -> $dest"
+
+  if [[ -d $src && ! -L $src ]]; then
+    mkdir -p "$dest"
+    copy_contents "$src" "$dest"
+    $move && rmdir "$src"
+  elif $move; then
+    mv "$src" "$dest"
+  else
+    cp "$src" "$dest"
+  fi
+
+  echo "$dest"
+}
+
+copy_one "$src" "$dest_dir"

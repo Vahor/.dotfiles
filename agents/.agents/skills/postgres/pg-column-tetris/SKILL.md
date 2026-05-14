@@ -1,5 +1,5 @@
 ---
-name: postgres
+name: pg-column-tetris
 description: PostgreSQL table design guidance focused on structuring columns to reduce heap row size. Use when creating or reviewing Postgres CREATE TABLE DDL, migrations, schema design, column ordering, row padding, alignment, or table-size optimization.
 user-invocable: false
 ---

@@ -1,6 +1,6 @@
 ---
 name: git-worktree
-description: Use when starting feature work that needs isolation from current workspace - creates isolated git worktrees next to the current project with safety verification. Triggers on worktree, git worktree, isolated workspace, or creating a new branch for feature work.
+description: Use when starting feature work or creating a feature branch - creates a branch in-place when current branch is main/develop, otherwise creates an isolated git worktree next to the current project. Triggers on worktree, git worktree, isolated workspace, or creating a new branch for feature work.
 user-invocable: true
 ---
 
@@ -10,13 +10,13 @@ user-invocable: true
 
 Git worktrees create isolated workspaces sharing the same repository, allowing work on multiple branches simultaneously without switching.
 
-**Core principle:** Create the worktree as a sibling of the current project + verify a clean baseline.
+**Core principle:** If the current branch is `main` or `develop`, create the requested feature branch in the current repository. Otherwise, create a sibling worktree for the requested branch and verify a clean baseline.
 
-**Announce at start:** "I'm using the git-worktree skill to set up an isolated workspace."
+**Announce at start:** "I'm using the git-worktree skill to set up the feature branch/workspace."
 
 ## Worktree Location
 
-Always create worktrees in the parent folder of the current project/repository:
+When a worktree is needed, always create it in the parent folder of the current project/repository:
 
 ```bash
 <parent-folder>/<project-name>-worktree-<branchname>
@@ -48,18 +48,49 @@ Because this location is outside the repository, no `.gitignore` verification is
 
 ## Creation Steps
 
-### 1. Detect Project Name and Parent Folder
+### 1. Detect Project Name, Parent Folder, and Current Branch
 
 ```bash
 repo_root=$(git rev-parse --show-toplevel)
 project=$(basename "$repo_root")
 parent=$(dirname "$repo_root")
+current_branch=$(git branch --show-current)
 ```
 
-### 2. Determine Worktree Path
+If `current_branch` is empty (detached HEAD), ask before creating a branch or worktree.
+
+### 2. Determine Target Branch
 
 ```bash
-branch="<actual-git-branch-name>"
+branch="<requested-feature-branch-name>"
+```
+
+Rules:
+- If the branch/feature name is not clear from the user request, ask for it before running commands.
+- Do not default to the current branch name unless the user explicitly asks to continue that branch.
+
+### 3. If on main/develop, Create Branch In-Place
+
+If the current branch is `main` or `develop`, do **not** create a worktree. Create the requested feature branch in the current repository and continue there.
+
+```bash
+if [ "$current_branch" = "main" ] || [ "$current_branch" = "develop" ]; then
+  git switch -c "$branch"
+  # Stay in the current repository; no worktree path is needed.
+fi
+```
+
+If the branch already exists, confirm the user's intent before switching to it:
+
+```bash
+git switch "$branch"
+```
+
+### 4. Determine Worktree Path
+
+For any current branch other than `main` or `develop`, create a sibling worktree for the requested branch.
+
+```bash
 jira_issue=$(printf "%s" "$branch" | grep -Eo '[A-Z][A-Z0-9]+-[0-9]+' | head -n 1 || true)
 branchname="${jira_issue:-$branch}"
 branchname=$(printf "%s" "$branchname" | sed -E 's#[/[:space:]]+#-#g')
@@ -74,30 +105,30 @@ Examples:
 # branch=APP-123            -> branchname=APP-123
 ```
 
-If current branch is `main` or `develop` or `master` ask user which feature should be implemented. Do not make a worktree based of these branches.
-
-### 3. Create Worktree
+### 5. Create Worktree
 
 ```bash
-git worktree add "$path" -b "$branch"
+git worktree add "$path" -b "$branch" "$current_branch"
 cd "$path"
 ```
 
-If the branch already exists, use the existing branch instead:
+If the branch already exists and is not checked out elsewhere, use the existing branch instead:
 
 ```bash
 git worktree add "$path" "$branch"
 cd "$path"
 ```
 
-### 4. Run Project Setup
+If the target branch is already checked out in another worktree, report that path and ask before proceeding.
+
+### 6. Run Project Setup
 
 Auto-detect and run appropriate setup:
 
 ```bash
 # Node.js
 if [ -f package.json ]; then bun install; fi
-if [ -f mise.toml]; then mise trust; fi
+if [ -f mise.toml ]; then mise trust; fi
 ```
 
 Files to copy:
@@ -106,7 +137,9 @@ Files to copy:
 - `.pi` folder
 
 
-### 5. Report Location
+### 7. Report Location
+
+For worktree flow:
 
 ```text
 Worktree ready at <full-path>
@@ -114,13 +147,21 @@ Tests passing (<N> tests, 0 failures)
 Ready to implement <feature-name>
 ```
 
-Then update `pi` cwd.
+Then update `pi` cwd to the worktree.
+
+For main/develop in-place flow:
+
+```text
+Branch ready in current repository: <branch>
+Ready to implement <feature-name>
+```
 
 ## Quick Reference
 
 | Situation | Action |
 |-----------|--------|
-| Any project | Use `<repo-parent>/<project>-worktree-<branchname>` |
+| Current branch is `main` or `develop` | Create requested feature branch in the current repo; no worktree |
+| Current branch is anything else | Use `<repo-parent>/<project>-worktree-<branchname>` |
 | Repo is `~/dev/vahor/bidule` | Use `~/dev/vahor/bidule-worktree-<branchname>` |
 | Branch has `/` | Replace `/` with `-` in folder name |
 | Branch has JIRA code | Use JIRA code as `branchname` |

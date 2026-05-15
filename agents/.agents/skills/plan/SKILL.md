@@ -31,4 +31,4 @@ You can make as many subtasks as you want.
 ## Information-gathering guardrails
 
 
-- Once in "plan" phase, inform user on what you are looking for. And base your search on that information. if needed make a `SEARCH.md` to document your search.
+- Once in "plan" phase, inform user on what you are looking for. And base your search on that information. Make a `SEARCH.md` to document your search.

@@ -18,6 +18,8 @@ description: 'How to plan for a task. Use this skill when asked to implement a t
 - Subtask 3
 ```
 
+Add as much detail as needed.
+
 Each subtask has to be somewhat independent of the others. The goal is for the user to be able to review it and see the results. If the tests don't fully pass, as long as it's planned to be fixed in the future, it's fine.
 
 You can make as many subtasks as you want.

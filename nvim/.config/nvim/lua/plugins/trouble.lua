@@ -34,11 +34,6 @@ return {
         desc = 'Buffer Diagnostics (Trouble)',
       },
       {
-        '<leader>Q',
-        '<cmd>Trouble qflist toggle<cr>',
-        desc = 'Quickfix List (Trouble)',
-      },
-      {
         '<leader>q',
         '<cmd>Trouble qflist toggle<cr>',
         desc = 'Quickfix List (Trouble)',

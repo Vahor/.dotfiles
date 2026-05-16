@@ -10,6 +10,7 @@ return {
       local root_dir = require('jdtls.setup').find_root(root_markers)
 
       local workspace_folder = home .. '/.local/share/eclipse/cache/' .. vim.fn.fnamemodify(root_dir, ':p:h:t')
+      local jdtls_home = '/opt/homebrew/opt/jdtls/libexec'
 
       local function jdtls_setup(event)
         local jdtls = require 'jdtls'
@@ -87,11 +88,10 @@ return {
             '-javaagent:'
               .. home
               .. '/.local/share/eclipse/lombok.jar',
-            -- jdtls TODO: maj version
             '-jar',
-            vim.fn.glob '/opt/homebrew/Cellar/jdtls/1.46.1/libexec/plugins/org.eclipse.equinox.launcher_*.jar',
+            vim.fn.glob(jdtls_home .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
             '-configuration',
-            '/opt/homebrew/Cellar/jdtls/1.46.1/libexec/config_mac/',
+            jdtls_home .. '/config_mac/',
             '-data',
             workspace_folder,
             '--add-modules=ALL-SYSTEM',

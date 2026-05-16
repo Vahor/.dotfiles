@@ -43,11 +43,46 @@ Preferred:
 hyperfine 'zsh -i -c exit'
 ```
 
-Fallback without `hyperfine`:
+To debug zsh performance, use:
+
+```sh
+# in zshrc
+zmodload zsh/zprof
+
+...
+
+zprof
+```
+
+then run zsh
+
+Perfs as of 2026-05-16:
+
+```
+Benchmark 1: zsh -i -c exit
+  Time (mean ± σ):     122.0 ms ±   4.9 ms    [User: 61.5 ms, System: 47.0 ms]
+  Range (min … max):   112.1 ms … 131.7 ms    23 runs
+
+```
+
+## Nvim startup benchmark
+
+Preferred:
 
 ```bash
-for i in {1..10}; do /usr/bin/time -p zsh -i -c exit; done
+hyperfine 'nvim -c quitall'
 ```
+
+then run nvim
+
+Perfs as of 2026-05-16:
+
+```
+Benchmark 1: nvim -c quitall
+  Time (mean ± σ):     146.1 ms ±   7.5 ms    [User: 114.2 ms, System: 55.9 ms]
+  Range (min … max):   133.7 ms … 164.9 ms    20 runs
+```
+
 
 ## Adding a new Stow package
 

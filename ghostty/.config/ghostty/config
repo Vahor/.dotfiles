@@ -1,0 +1,27 @@
+theme = Catppuccin Mocha
+background = 1e1e2e
+foreground = cdd6f4
+
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 13.5
+font-codepoint-map = U+2500-U+259F=Menlo
+
+cursor-color = f5e0dc
+cursor-text = 1e1e2e
+cursor-style = block
+cursor-style-blink = false
+
+shell-integration = zsh
+shell-integration-features = cursor,title,ssh-env,ssh-terminfo,path,no-sudo
+
+# Option-as-alt enables word navigation/delete-word keybinds below.
+# Disable this if Option-key characters break on non-US keyboard layouts.
+macos-option-as-alt = true
+keybind = alt+left=esc:b
+keybind = alt+right=esc:f
+keybind = alt+backspace=text:\x17
+
+# Shift+Enter sends CSI-u Shift+Enter for TUI apps.
+keybind = shift+enter=csi:13;2u
+
+copy-on-select = true

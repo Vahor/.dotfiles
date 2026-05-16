@@ -1,32 +1,54 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
-DATE=${1:?Usage: $0 YYYY-MM-DD}
+usage() {
+  echo "Usage: $0 YYYY-MM-DD [ELB_LOGS_BUCKET]" >&2
+  echo "Required env: AWS_PROFILE" >&2
+  echo "Optional env: AWS_REGION (default: eu-west-1), ELB_LOGS_BUCKET" >&2
+  exit 1
+}
 
-YEAR=$(echo $DATE | cut -d'-' -f1)
-MONTH=$(echo $DATE | cut -d'-' -f2)
-DAY=$(echo $DATE | cut -d'-' -f3)
+error() {
+  echo "Error: $1" >&2
+  exit 1
+}
 
+[[ $# -ge 1 && $# -le 2 ]] || usage
+DATE=$1
+BUCKET="${2:-${ELB_LOGS_BUCKET:-}}"
+
+[[ "$DATE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] || error "Date must be YYYY-MM-DD."
+[[ -n "${AWS_PROFILE:-}" ]] || error "AWS_PROFILE is required."
+[[ -n "$BUCKET" ]] || error "ELB_LOGS_BUCKET is required as env var or second argument."
+
+require_command aws awk nvim python3 zcat
+
+IFS=- read -r YEAR MONTH DAY <<<"$DATE"
 
 ACCOUNT_ID=$(aws sts get-caller-identity --profile "$AWS_PROFILE" --query Account --output text)
-REGION="eu-west-1"
-BUCKET=""
+REGION="${AWS_REGION:-eu-west-1}"
 
 S3_PATH="s3://$BUCKET/AWSLogs/$ACCOUNT_ID/elasticloadbalancing/$REGION/$YEAR/$MONTH/$DAY/"
 TMP_DIR=$(mktemp -d -t elb-logs-XXXXX)
 LOCAL_DIR="$TMP_DIR/$DATE"
 
+mkdir -p "$LOCAL_DIR"
+
 echo "Downloading logs from $S3_PATH..."
 aws s3 cp "$S3_PATH" "$LOCAL_DIR" --recursive
 
+shopt -s nullglob
+LOG_FILES=("$LOCAL_DIR"/*.gz)
+[[ ${#LOG_FILES[@]} -gt 0 ]] || error "No .gz log files downloaded from $S3_PATH"
+
 MERGED="$LOCAL_DIR/merged.log"
 echo "Merging and filtering 5xx..."
-zcat "$LOCAL_DIR"/*.gz | awk '$9 >= 500' | python3 -c "
+zcat "${LOG_FILES[@]}" | awk '$9 >= 500' | python3 -c '
 import sys, urllib.parse
 for line in sys.stdin:
     print(urllib.parse.unquote(line.rstrip()))
-" > "$MERGED"
+' >"$MERGED"
 
 echo "Opening in vim... ($MERGED)"
 nvim "$MERGED"

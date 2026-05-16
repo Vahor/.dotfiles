@@ -1,42 +1,63 @@
 [core]
-    excludesfile = ~/.gitignore
-    editor = nvim
-    autocrlf = input
+	excludesfile = ~/.gitignore
+	editor = nvim
+	autocrlf = input
+
 [push]
-    default = simple
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+
 [commit]
 	gpgsign = true
+
 [pull]
 	rebase = true
+
+[rebase]
+	autoStash = true
+	autoSquash = true
+	updateRefs = true
+
+[merge]
+	conflictStyle = zdiff3
+
 [color]
-    status = auto
-    diff = auto
-    branch = auto
-    interactive = auto
-    grep = auto
-    ui = auto
+	status = auto
+	diff = auto
+	branch = auto
+	interactive = auto
+	grep = auto
+	ui = auto
+
 [fetch]
 	prune = true
+	pruneTags = true
+
 [hub]
-    protocol = https
+	protocol = https
+
 [github]
-    user = vahor
+	user = vahor
+
 [diff]
-    tool = nvimdiff
+	algorithm = histogram
+	colorMoved = zebra
+	renames = copies
+
 [init]
-    defaultBranch = main
+	defaultBranch = main
+
 [gpg]
 	format = ssh
+
 [gpg "ssh"]
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
-[commit]
-    gpgsign = true
-[alias]
-    gui = !sh -c 'lazygit'
-    open = !sh -c 'gitopen'
+
 [user]
 	name = Vahor
 	email = me@vahor.fr
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINfXaLc96u/JMOECHXklURFyzQiBbphvVAuqbiPaoAeQ
+
 [rerere]
-    enabled = true
+	enabled = true

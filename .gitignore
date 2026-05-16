@@ -1,7 +1,5 @@
 **/*.personal
 .DS_Store
-bin/.local/share
-bin/.local/state
 .idea
 *.iml
 *site-packages/

@@ -4,8 +4,8 @@
 
 SEARCH_FOLDERS=(
     ~/dev/vahor
-    ~/dev/vahor/pedaki
-    ~/dev/helosion
+    # ~/dev/vahor/pedaki
+    # ~/dev/helosion
     "/Users/nathan/Library/Mobile Documents/iCloud~md~obsidian/Documents"
 )
 

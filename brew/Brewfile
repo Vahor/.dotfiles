@@ -37,10 +37,10 @@ brew "zsh-syntax-highlighting"
 
 # Casks
 cask "1password"
-cask "alacritty"
 cask "alt-tab"
 cask "discord"
 cask "firefox"
+cask "ghostty"
 cask "gimp"
 cask "iina"
 cask "keycastr"

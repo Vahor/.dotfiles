@@ -1,30 +1,102 @@
-https://starship.rs/
+# Dotfiles
 
-fzf search terminal history
+Personal dotfiles managed with GNU Stow.
 
+## Fresh setup
 
-Append this line to ~/.zshrc to enable fzf keybindings for Zsh:
+Install Homebrew manually first:
 
-   source /usr/share/doc/fzf/examples/key-bindings.zsh
+Then,
 
-## Adding a new configuration folder
+Clone this repo:
 
-To add a new configuration directory (e.g., `newapp/`) to this dotfiles repository and have it automatically symlinked via `stow`:
+```bash
+git clone --recurse-submodules git@github.com:vahor/.dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+```
 
-1. **Create the directory** in the root of this repo:
+If the repo was cloned without submodules:
+
+```bash
+git submodule update --init
+```
+
+Install Homebrew packages from the Brewfile:
+
+```bash
+cd brew
+./install
+cd ..
+```
+
+Then stow the configured packages:
+
+```bash
+./install
+```
+
+## Shell startup benchmark
+
+Preferred:
+
+```bash
+hyperfine 'zsh -i -c exit'
+```
+
+Fallback without `hyperfine`:
+
+```bash
+for i in {1..10}; do /usr/bin/time -p zsh -i -c exit; done
+```
+
+## Adding a new Stow package
+
+1. Create a new package directory in this repo:
+
    ```bash
    mkdir newapp
    ```
-2. **Add your configuration files** inside that directory.
-   * **Note for hidden directories**: If you want to symlink to a hidden directory in `$HOME` (e.g., `~/.pi`), place the contents inside a subdirectory named after the target (e.g., `newapp/.newapp/`).
-3. **Update the `init` script** to include the new folder name in `STOW_FOLDERS`:
-   ```bash
-   # Edit 'init' and add 'newapp' to the comma-separated list
-   export STOW_FOLDERS="...,newapp"
+
+2. Add files using the home-relative layout. For hidden targets, use the target path inside the package:
+
+   ```text
+   newapp/.config/newapp/config.toml -> ~/.config/newapp/config.toml
+   newapp/.newapp/config             -> ~/.newapp/config
    ```
-4. **Run the install script**:
+
+3. Add the package name to `STOW_FOLDERS` in `init`.
+
+4. Simulate or run stow carefully:
+
    ```bash
+   stow --simulate --dotfiles newapp
    ./install
    ```
 
-This will use `stow` to symlink the contents of `newapp/` into your home directory (or wherever configured).
+## Maintenance checklist
+
+- Before committing, inspect:
+
+  ```bash
+  git status --short --ignored
+  ```
+
+- Make sure runtime files are ignored rather than tracked.
+- For shell changes:
+
+  ```bash
+  zsh -n zsh/.zshrc zsh/.zsh_profile
+  zsh -df -i -c 'source "$HOME/.dotfiles/zsh/.zshrc"; echo shell-ok'
+  ```
+
+- For tmux changes:
+
+  ```bash
+  tmux source-file ~/.tmux.conf
+  ```
+
+- For Neovim changes:
+
+  ```bash
+  nvim --headless +qa
+  ```

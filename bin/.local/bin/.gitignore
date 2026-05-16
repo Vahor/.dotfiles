@@ -6,6 +6,7 @@
 !elb-logs
 !git-redate
 !gitopen
+!require_command
 !tmux-sessionizer
 !todos
 !switch_env

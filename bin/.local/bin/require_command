@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $# -eq 0 ]]; then
+  echo "Usage: $0 COMMAND [COMMAND...]" >&2
+  exit 1
+fi
+
+for command_name in "$@"; do
+  if ! command -v "$command_name" >/dev/null 2>&1; then
+    echo "Error: Missing required command: $command_name" >&2
+    exit 1
+  fi
+done

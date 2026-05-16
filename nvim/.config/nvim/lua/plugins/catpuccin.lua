@@ -5,6 +5,19 @@ return {
   priority = 1000, -- make sure to load this before all the other start plugins
   config = function()
     require('catppuccin').setup {
+      custom_highlights = function(colors)
+        return {
+          -- Make `Gitsigns toggle_linehl` / `toggle_deleted` read like a small diff.
+          GitSignsAddLn = { bg = '#24382f' },
+          GitSignsChangeLn = { bg = '#27324a' },
+          GitSignsDeleteLn = { bg = '#3f2631' },
+          GitSignsChangedeleteLn = { bg = '#3f2631' },
+          GitSignsTopdeleteLn = { bg = '#3f2631' },
+          GitSignsDeleteVirtLn = { fg = colors.red, bg = '#3f2631' },
+          GitSignsDeleteVirtLnInLine = { bg = '#6b2d3b' },
+          GitSignsVirtLnum = { fg = colors.overlay1, bg = '#3f2631' },
+        }
+      end,
       integrations = {
         blink_cmp = true,
         cmp = false,

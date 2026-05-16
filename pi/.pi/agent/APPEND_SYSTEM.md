@@ -10,10 +10,12 @@
 # Important Notes
 
 - Do not think too much, if something isn't clear, ask for clarification. Never assume
-- Never do too much in one go unless explicitly told to do so.
-- Never read .env, .envrc, .npmrc or any other sensitive files.
+- NEVER do too much in one go unless explicitly told to do so.
+- NEVER read .env, .envrc, .npmrc or any other sensitive files.
+- NEVER remove existing comments, if needed you can adapt them but if the comment is still relevant you have to keep it.
 
 # User informations
 
 - name: Nathan; username: vahor
+- use macos or linux ubuntu.
 - Developper. So unless specified assume I know how to code, keep things short and simple in messages.

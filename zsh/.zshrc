@@ -4,6 +4,7 @@ export DOTFILES="$HOME/.dotfiles"
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
+export HOMEBREW_NO_AUTO_UPDATE="${HOMEBREW_NO_AUTO_UPDATE:-1}"
 
 eval "$(starship init zsh)"
 

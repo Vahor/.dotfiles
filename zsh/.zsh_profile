@@ -1,9 +1,0 @@
-export CONFIG_HOME="$HOME/.dotfiles/config"
-export ZSH_HOME="$HOME/.dotfiles/zsh"
-
-source "$CONFIG_HOME/alias"
-source_if_exists "$CONFIG_HOME/alias.personal"
-source "$CONFIG_HOME/env"
-source "$CONFIG_HOME/paths"
-
-source_if_exists "$ZSH_HOME/.zshrc_current"

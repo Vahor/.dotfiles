@@ -22,7 +22,6 @@ source_if_exists() {
 }
 
 # Shortcuts
-alias reload_profile="source ~/.zsh_profile"
 alias reload_shell="exec ${SHELL} -l"
 alias week="date +%V"
 

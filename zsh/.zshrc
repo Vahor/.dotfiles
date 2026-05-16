@@ -1,8 +1,16 @@
-source "$HOME/.dotfiles/zsh/.zsh_profile"
+export CONFIG_HOME="$HOME/.dotfiles/config"
+export ZSH_HOME="$HOME/.dotfiles/zsh"
+
+source "$CONFIG_HOME/alias"
+source "$CONFIG_HOME/env"
+source "$CONFIG_HOME/paths"
+
+source_if_exists "$CONFIG_HOME/alias.personal"
+source_if_exists "$ZSH_HOME/.zshrc_current"
+
+
 export DOTFILES="$HOME/.dotfiles"
 
-export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
 export HOMEBREW_NO_AUTO_UPDATE="${HOMEBREW_NO_AUTO_UPDATE:-1}"
 

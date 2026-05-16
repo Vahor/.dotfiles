@@ -85,7 +85,7 @@ for i in {1..10}; do /usr/bin/time -p zsh -i -c exit; done
 - For shell changes:
 
   ```bash
-  zsh -n zsh/.zshrc zsh/.zsh_profile
+  zsh -n zsh/.zprofile zsh/.zshrc zsh/base.zsh
   zsh -df -i -c 'source "$HOME/.dotfiles/zsh/.zshrc"; echo shell-ok'
   ```
 

@@ -12,3 +12,8 @@
 - Do not think too much, if something isn't clear, ask for clarification. Never assume
 - Never do too much in one go unless explicitly told to do so.
 - Never read .env, .envrc, .npmrc or any other sensitive files.
+
+# User informations
+
+- name: Nathan; username: vahor
+- Developper. So unless specified assume I know how to code, keep things short and simple in messages.

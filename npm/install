@@ -1,1 +1,0 @@
-cat list | xargs -p npm i -g

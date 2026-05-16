@@ -12,13 +12,4 @@ return {
       require('ts-error-translator').setup()
     end,
   },
-  {
-    'windwp/nvim-ts-autotag',
-    opt = {
-      autotag = {
-        enable_close = false,
-      },
-    },
-  },
-  { 'windwp/nvim-autopairs' },
 }

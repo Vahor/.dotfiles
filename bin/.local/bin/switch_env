@@ -36,11 +36,6 @@ refresh_tmux() {
     tmux refresh-client -S
 }
 
-if [[ -z "$value" ]]; then
-    switch_to_personal
-fi
-
-
 case "$1" in
     personal|p)
         switch_to_personal
@@ -50,5 +45,10 @@ case "$1" in
         ;;
     show|s)
         show_current_env
+        ;;
+    "")
+        if [[ -z "$value" ]]; then
+            switch_to_personal
+        fi
         ;;
 esac

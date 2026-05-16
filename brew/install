@@ -1,4 +1,9 @@
-for i in $(cat list)
-do
-    brew install "$i"
-done
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+require_command brew
+
+brew bundle --file Brewfile

@@ -24,14 +24,9 @@ return {
     },
     keys = {
       {
-        '<leader>tT',
+        '<leader>tt',
         '<cmd>Trouble split_diagnostics toggle<cr>',
         desc = 'Diagnostics (Trouble)',
-      },
-      {
-        '<leader>tt',
-        '<cmd>Trouble split_diagnostics toggle filter.buf=0<cr>',
-        desc = 'Buffer Diagnostics (Trouble)',
       },
       {
         '<leader>q',

@@ -5,6 +5,7 @@
 - Do not use `ls -R` in a folder that has a `node_modules` folder. It will be very slow, try to skip `node_modules` folder. You can use `find . -type d -name node_modules -prune -o -print` to list all folders excluding `node_modules`.
 - Use `bun` instead of `npm`. And `bun` instead of `vitest` when `vitest` is not used.
 - When given an url, use `curl` to get the page content, set `Accept: text/markdown` header to get the page content in markdown format.
+- When user gives you a github repo link, if you have to search something in it. Clone it in a temporaty folder and do your research in that folder.
 
 
 # Important Notes

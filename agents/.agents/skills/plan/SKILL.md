@@ -28,7 +28,7 @@ You can make as many subtasks as you want.
 
 4. Ask for confirmation before writing the plan to a PLAN.md file. Do not create or update PLAN.md until the user explicitly approves the proposed plan. Refer to PLAN.md when doing the task.
 
-5. One a task is done, do not go on the next task unless specifically asked to do so. Ask for confirmation before moving on.
+5. One a task is done, do not go on the next task unless specifically asked to do so. Ask for confirmation before moving on. Update plan to mark what was done and what was skipped.
 
 ## Information-gathering guardrails
 

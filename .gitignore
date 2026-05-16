@@ -6,4 +6,4 @@
 starship/.config/**/*
 !starship/.config/starship.toml
 .obsidian/graph.json
-.pi/
+/.pi/

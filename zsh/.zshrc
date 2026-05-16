@@ -7,9 +7,11 @@ export PATH="$HOME/.bun/bin:$PATH"
 
 eval "$(starship init zsh)"
 
-[ -f "$HOME/.dotfiles/zsh/functions/lazy-conda-init.zsh" ] && source "$HOME/.dotfiles/zsh/functions/lazy-conda-init.zsh"
-[ -f "$HOME/.dotfiles/zsh/functions/oh-my-zsh.zsh" ] && source "$HOME/.dotfiles/zsh/functions/oh-my-zsh.zsh"
-[ -f "$HOME/.dotfiles/zsh/functions/gh-copilot-alias.zsh" ] && source "$HOME/.dotfiles/zsh/functions/gh-copilot-alias.zsh"
+zsh_functions="$HOME/.dotfiles/zsh/functions"
+source_if_exists "$zsh_functions/lazy-conda-init.zsh"
+source_if_exists "$zsh_functions/oh-my-zsh.zsh"
+source_if_exists "$zsh_functions/gh-copilot-alias.zsh"
+unset zsh_functions
 
 # https://mise.jdx.dev/getting-started.html
 if command -v mise >/dev/null 2>&1; then

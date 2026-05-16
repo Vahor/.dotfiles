@@ -31,6 +31,11 @@ compinit -C
 # plugins=(zsh-autosuggestions zsh-syntax-highlighting)
 # prefix=$(brew --prefix)
 prefix="/opt/homebrew"
-source $prefix/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $prefix/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.dotfiles/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+homebrew_zsh_plugins="$prefix/share"
+dotfiles_zsh_plugins="$HOME/.dotfiles/zsh/plugins"
+
+source_if_exists "$homebrew_zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source_if_exists "$homebrew_zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source_if_exists "$dotfiles_zsh_plugins/fzf-tab/fzf-tab.plugin.zsh"
+
+unset prefix homebrew_zsh_plugins dotfiles_zsh_plugins

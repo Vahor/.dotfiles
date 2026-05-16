@@ -17,6 +17,10 @@ alias cat="bat"
 
 alias k=kubectl
 
+source_if_exists() {
+  [ -f "$1" ] && source "$@"
+}
+
 # Shortcuts
 alias reload_profile="source ~/.zsh_profile"
 alias reload_shell="exec ${SHELL} -l"

@@ -1,43 +1,65 @@
 return {
-  { -- Highlight, edit, and navigate code
+  {
     'nvim-treesitter/nvim-treesitter',
+    -- lazy = false,
+    branch = 'main',
     build = ':TSUpdate',
     config = function()
-      -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+      local treesitter = require 'nvim-treesitter'
+      local ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'markdown_inline', 'vim', 'vimdoc' }
+      treesitter.install(ensure_installed)
 
-      ---@diagnostic disable-next-line: missing-fields
-      require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'markdown_inline', 'vim', 'vimdoc' },
-        -- Autoinstall languages that are not installed
-        auto_install = true,
-        highlight = { enable = true },
-        indent = { enable = true },
-      }
+      ---@param buf integer
+      ---@param language string
+      local function treesitter_try_attach(buf, language)
+        -- Check if a parser exists and load it
+        if not vim.treesitter.language.add(language) then
+          return
+        end
+        -- Enable syntax highlighting and other treesitter features
+        vim.treesitter.start(buf, language)
 
-      -- Add d2 (https://github.com/ravsii/tree-sitter-d2)
-      local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-      parser_config.d2 = {
-        install_info = {
-          url = 'https://github.com/ravsii/tree-sitter-d2',
-          files = { 'src/parser.c' },
-          branch = 'main',
-        },
-        filetype = 'd2',
-      }
+        -- Enable treesitter based folds
+        -- For more info on folds see `:help folds`
+        -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        -- vim.wo.foldmethod = 'expr'
 
-      -- we also need to tell neovim to use "d2" filetype on "*.d2" files, as well as
-      -- token comment.
-      -- ftplugin/autocmd is also an option.
-      vim.filetype.add {
-        extension = {
-          d2 = function()
-            return 'd2', function(bufnr)
-              vim.bo[bufnr].commentstring = '# %s'
-            end
-          end,
-        },
-      }
-      -- Note: once installed, clone git repo's query folder into ~/.local/share/nvim/lazy/nvim-treesitter/queries/d2
+        -- Check if treesitter indentation is available for this language, and if so enable it
+        -- in case there is no indent query, the indentexpr will fallback to the vim's built in one
+        local has_indent_query = vim.treesitter.query.get(language, 'indents') ~= nil
+
+        -- Enable treesitter based indentation
+        if has_indent_query then
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      end
+
+      local available_parsers = require('nvim-treesitter').get_available()
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function(args)
+          local buf, filetype = args.buf, args.match
+
+          local language = vim.treesitter.language.get_lang(filetype)
+          if not language then
+            return
+          end
+
+          local installed_parsers = require('nvim-treesitter').get_installed 'parsers'
+
+          if vim.tbl_contains(installed_parsers, language) then
+            -- Enable the parser if it is already installed
+            treesitter_try_attach(buf, language)
+          elseif vim.tbl_contains(available_parsers, language) then
+            -- If a parser is available in `nvim-treesitter`, auto-install it and enable it after the installation is done
+            require('nvim-treesitter').install(language):await(function()
+              treesitter_try_attach(buf, language)
+            end)
+          else
+            -- Try to enable treesitter features in case the parser exists but is not available from `nvim-treesitter`
+            treesitter_try_attach(buf, language)
+          end
+        end,
+      })
     end,
   },
 }

@@ -1,0 +1,10 @@
+**
+!.gitignore
+
+!$
+!cpdup
+!elb-logs
+!git-redate
+!gitopen
+!tmux-sessionizer
+!todos

@@ -12,7 +12,7 @@ DAY=$(echo $DATE | cut -d'-' -f3)
 ACCOUNT_ID=$(aws sts get-caller-identity --profile "$AWS_PROFILE" --query Account --output text)
 REGION="eu-west-1"
 BUCKET=""
-           
+
 S3_PATH="s3://$BUCKET/AWSLogs/$ACCOUNT_ID/elasticloadbalancing/$REGION/$YEAR/$MONTH/$DAY/"
 TMP_DIR=$(mktemp -d -t elb-logs-XXXXX)
 LOCAL_DIR="$TMP_DIR/$DATE"

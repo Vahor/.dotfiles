@@ -1,8 +1,53 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 error() {
-  echo -e "Error: $1" >&2
+  echo "Error: $1" >&2
   exit 1
+}
+
+remote_to_web_url() {
+  local remote_url=$1
+  local host path rest
+
+  case "$remote_url" in
+    # git@github.com:user/repo.git
+    git@*:*)
+      rest=${remote_url#git@}
+      host=${rest%%:*}
+      path=${rest#*:}
+      ;;
+    # ssh://git@github.com/user/repo.git
+    ssh://*)
+      rest=${remote_url#ssh://}
+      rest=${rest#*@}
+      host=${rest%%/*}
+      path=${rest#*/}
+      ;;
+    http://*|https://*)
+      echo "${remote_url%.git}"
+      return
+      ;;
+    *)
+      echo "${remote_url%.git}"
+      return
+      ;;
+  esac
+
+  path=${path#/}
+  path=${path%.git}
+  echo "https://$host/$path"
+}
+
+open_url() {
+  local url=$1
+
+  if command -v open >/dev/null 2>&1; then
+    open "$url" >/dev/null 2>&1
+  elif command -v xdg-open >/dev/null 2>&1; then
+    xdg-open "$url" >/dev/null 2>&1
+  else
+    error "No opener found (expected open or xdg-open)."
+  fi
 }
 
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
@@ -11,28 +56,11 @@ fi
 
 remote_url=$(git config --get remote.origin.url)
 
-if [ -z "$remote_url" ]; then
+if [[ -z "$remote_url" ]]; then
   error "No remote found."
 fi
 
-echo "Opening $remote_url"
+web_url=$(remote_to_web_url "$remote_url")
 
-
-if [[ $remote_url == ssh://* ]]; then
-  # remove ssh:// prefix
-  remote_url=${remote_url#ssh://}
-fi
-
-if [[ $remote_url == git@* ]]; then
-  # git@github.com:user/repo.git
-  # remove git@, .git and replace : with /
-  domain=${remote_url#git@}
-  domain=${domain%%:*}
- 
-  url_path=${remote_url#*/}
-  url_path=${url_path%.git}
-
-  remote_url="https://$domain/$url_path"
-fi
-
-open "$remote_url" > /dev/null 2>&1
+echo "Opening $web_url"
+open_url "$web_url"

@@ -1,0 +1,5 @@
+# Global gitignore
+
+.env
+.envrc
+.DS_Store

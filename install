@@ -3,10 +3,11 @@
 source init
 
 pushd $DOTFILES
+
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
     stow -D $folder
-    stow $folder
+    stow --dotfiles $folder
     echo "Adding $folder"
 done
 popd

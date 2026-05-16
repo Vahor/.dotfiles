@@ -179,6 +179,7 @@ require('lazy').setup {
   -- "gc" tiio comment visual regions/lines
   {
     'numToStr/Comment.nvim',
+    opts = {},
   },
 
   -- NOTE: Plugins can also be configured to run lua code when they are loaded.
@@ -372,8 +373,14 @@ require('lazy').setup {
           biome = {},
           -- basedpyright = {
           pyright = {
-            typeCheckingMode = 'standard',
-            reportMissingImports = false,
+            settings = {
+              python = {
+                analysis = {
+                  typeCheckingMode = 'standard',
+                  reportMissingImports = false,
+                },
+              },
+            },
           },
           -- rust_analyzer = {},
           -- intelephense = {},

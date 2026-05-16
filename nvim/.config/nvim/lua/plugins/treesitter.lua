@@ -12,7 +12,6 @@ return {
         auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
-        autotag = { enable = true },
       }
 
       -- Add d2 (https://github.com/ravsii/tree-sitter-d2)

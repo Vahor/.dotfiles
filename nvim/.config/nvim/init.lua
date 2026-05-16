@@ -1,3 +1,6 @@
+-- Enable faster startup by caching compiled Lua modules.
+vim.loader.enable()
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -28,7 +31,7 @@ vim.opt.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+  vim.o.clipboard = 'unnamedplus'
 end)
 
 -- Enable break indent
@@ -68,6 +71,9 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Ask before failing operations such as closing unsaved buffers.
+vim.opt.confirm = true
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -75,15 +81,33 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Diagnostic keymaps
+-- Diagnostic config and keymaps
+vim.diagnostic.config {
+  update_in_insert = false,
+  severity_sort = true,
+  float = { border = 'rounded', source = 'if_many' },
+  underline = { severity = { min = vim.diagnostic.severity.WARN } },
+  virtual_text = true,
+  virtual_lines = false,
+  jump = {
+    on_jump = function(_, bufnr)
+      vim.diagnostic.open_float {
+        bufnr = bufnr,
+        scope = 'cursor',
+        focus = false,
+      }
+    end,
+  },
+}
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- OilVim
 vim.keymap.set('n', '<C-e>', ':Oil<CR>', { desc = 'Open OilVim' })
 -- Inlay hints
 vim.keymap.set('n', '<leader>ih', function()
-  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-  vim.notify(vim.lsp.inlay_hint.is_enabled() and 'Inlay hints enabled' or 'Inlay hints disabled')
+  local filter = { bufnr = 0 }
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(filter), filter)
+  vim.notify(vim.lsp.inlay_hint.is_enabled(filter) and 'Inlay hints enabled' or 'Inlay hints disabled')
 end, { desc = 'Show [I]nlay [H]ints' })
 
 -- Kill buffer execpt active
@@ -120,12 +144,12 @@ vim.keymap.set('n', '<leader>"', '<C-w>s', { desc = 'Split horizontally' })
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
+--  See `:help vim.hl.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
 })
 
@@ -145,7 +169,7 @@ end, { desc = 'Split horizontally' })
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
 end ---@diagnostic disable-next-line: undefined-field
@@ -321,7 +345,7 @@ require('lazy').setup {
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
@@ -345,16 +369,6 @@ require('lazy').setup {
           end
         end,
       })
-
-      -- Diagnostic Config
-      -- See :help vim.diagnostic.Opts
-      vim.diagnostic.config {
-        severity_sort = true,
-        virtual_text = {
-          source = 'if_many',
-          spacing = 1,
-        },
-      }
 
       local inlayHintTs = {
         parameterNames = { enabled = 'literals' },
@@ -443,7 +457,7 @@ require('lazy').setup {
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       for server, config in pairs(vim.tbl_extend('keep', servers.mason, servers.others)) do
-        if not vim.tbl_isempty(config) then
+        if next(config) ~= nil then
           vim.lsp.config(server, config)
         end
       end

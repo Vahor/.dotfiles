@@ -1,10 +1,9 @@
 return {
   {
     -- add color on hex, rgb, hsl, css colors
-    'norcalli/nvim-colorizer.lua',
-    config = function()
-      require('colorizer').setup()
-    end,
+    'catgoose/nvim-colorizer.lua',
+    name = 'nvim-colorizer-catgoose',
+    opts = {},
   },
   {
     'dmmulroy/ts-error-translator.nvim',

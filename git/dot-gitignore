@@ -35,3 +35,7 @@ temp/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+
+PLAN.md
+QUESTIONS.md
+SEARCH.md

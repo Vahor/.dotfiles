@@ -4,7 +4,7 @@ description: 'How to plan for a task. Use this skill when asked to implement a t
 ---
 
 
-0. Check only obvious/current-directory planning guidance: `AGENTS.md`, `PLAN.md`, and `QUESTIONS.md`. Do not search recursively. If `PLAN.md` or `QUESTIONS.md` is present, ask if it is up to date. If `AGENTS.md` is present or explicitly named, read it as repo guidance.
+0. Check only obvious/current-directory planning guidance: `AGENTS.md`, `PLAN.md`, `SEARCH.md`, and `QUESTIONS.md`. Do not search recursively. If `PLAN.md` or `QUESTIONS.md` is present, ask if it is up to date. If `AGENTS.md` is present or explicitly named, read it as repo guidance.
 
 1. **Non-negotiable first step:** understand the scope before planning. If the user gives a Jira issue key/URL, first fetch the Jira issue details needed to understand the task, following the Jira skill's field/output limits. Then ask clarifying questions based on that ticket. If the user does not give a Jira issue, ask clarifying questions before any task-specific work. Do **not** read repository files, run implementation-oriented shell commands, or gather code context before asking those questions and waiting for the user's answer. The only exceptions before the first questions are reading this skill file itself, reading obvious/current-directory `AGENTS.md` / `PLAN.md` / `QUESTIONS.md`, and fetching the provided Jira issue. Write a `QUESTIONS.md` file with responses to these questions after the user answers.
 

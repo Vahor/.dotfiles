@@ -14,9 +14,7 @@ cursor-style-blink = false
 shell-integration = zsh
 shell-integration-features = cursor,title,ssh-env,ssh-terminfo,path,no-sudo
 
-# Option-as-alt enables word navigation/delete-word keybinds below.
-# Disable this if Option-key characters break on non-US keyboard layouts.
-macos-option-as-alt = true
+macos-option-as-alt = false
 keybind = alt+left=esc:b
 keybind = alt+right=esc:f
 keybind = alt+backspace=text:\x17

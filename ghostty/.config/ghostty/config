@@ -25,3 +25,7 @@ keybind = alt+backspace=text:\x17
 keybind = shift+enter=csi:13;2u
 
 copy-on-select = true
+
+# Recognize URLs in terminal output.
+link-url = true
+link-previews = true

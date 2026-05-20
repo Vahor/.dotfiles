@@ -3,7 +3,7 @@
 vim.api.nvim_create_autocmd({ 'BufRead' }, {
   desc = 'Fix markdown syntax highlighting',
   group = vim.api.nvim_create_augroup('markdown-syntax', { clear = true }),
-  pattern = '*.md',
+	pattern = { "*.md", "*.mdx" },
   callback = function()
     vim.bo.filetype = 'markdown'
     vim.bo.syntax = 'markdown'

@@ -37,6 +37,8 @@ alias cddd="cd ../.."
 alias cdddd="cd ../../.."
 alias cddddd="cd ../../../.."
 
+function -() { cd -; }
+
 alias dot="cd ~/.dotfiles"
 alias icloud="cd ~/Library/Mobile\ Documents/com\~apple\~CloudDocs"
 alias notes='cd "/Users/nathan/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes"'

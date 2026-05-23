@@ -9,6 +9,7 @@
 - When user gives you a github repo link, if you have to search something in it. Clone it in a temporaty folder and do your research in that folder.
 - Keep things simple. A function should have a single purpose and be as short as possible. Do not make huge index or barrel files, split into smaller files if needed to make the code more readable and maintainable.
 - When refactoring a function or adding a constant, check if the update can help other functions, and if so update them.
+- Make sure the code or function is tested and performant, use `hyperfine` or `autocannon` to test the performance.
 
 
 # Important Notes
@@ -17,6 +18,7 @@
 - NEVER do too much in one go unless explicitly told to do so.
 - NEVER read .env, .envrc, .npmrc or any other sensitive files.
 - NEVER remove existing comments, if needed you can adapt them but if the comment is still relevant you have to keep it.
+- When you want to run a script, write it in a file and run the file. Do not write the script directly in the terminal. Make /tmp folders if needed or put them in a folder dedicated to the development of this project.
 
 # User informations
 

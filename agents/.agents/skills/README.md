@@ -4,6 +4,8 @@ This directory contains custom skills for agents used in this project.
 
 When stowed, these skills will be available at `.agents/skills/`.
 
+External Pi skills installed with the `skills` CLI are listed in `../../external-skills` and installed with `../../install-external-skills` into `~/.pi/agent/skills/external/`.
+
 Each skill should be organized in its own subdirectory, following the structure:
 - `.agents/skills/<skill-name>/SKILL.md` (Description of the skill)
 - `.agents/skills/<skill-name>/tools/` (Optional: implementation details or scripts)

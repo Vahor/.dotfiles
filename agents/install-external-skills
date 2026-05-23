@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+skills_dir="$HOME/.pi/agent/skills"
+external_dir="$skills_dir/external"
+mkdir -p "$external_dir"
+
+while read -r source _ skill; do
+  [[ -z "${source:-}" || "$source" == \#* ]] && continue
+
+  bunx skills add "$source" --skill "$skill" --global --agent pi --copy --yes
+  rm -rf "$external_dir/$skill"
+  mv "$skills_dir/$skill" "$external_dir/$skill"
+done < "$(dirname "$0")/external-skills"

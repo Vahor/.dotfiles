@@ -35,6 +35,12 @@ Then stow the configured packages:
 ./install
 ```
 
+Install external Pi skills listed in `agents/external-skills` into `~/.pi/agent/skills/external/`:
+
+```bash
+./agents/install-external-skills
+```
+
 ## Shell startup benchmark
 
 Preferred:

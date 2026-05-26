@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+  echo "Usage: $(basename "$0") APP" >&2
+  echo 'APP: api-1 | api-2 >&2
+  exit 1
+}
+
+if (( $# != 1 )); then
+  usage
+fi
+
+app="$1"
+
+case "$app" in
+  api-1|api-2) ;;
+  *) usage ;;
+esac
+
+aws logs filter-log-events \
+  --filter-pattern '{ $.level > 30 }' \
+  --start-time "$(date -d '1 hour ago' +%s)000" \
+  --end-time "$(date +%s)000" \
+  --log-group-name "/sesamm/application/$app" | jq -r '.events[].message'
+

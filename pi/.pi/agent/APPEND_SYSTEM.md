@@ -5,6 +5,7 @@
 - Use `gh` when asked to read a github related question.
 - Do not use `ls -R` in a folder that has a `node_modules` folder. It will be very slow, try to skip `node_modules` folder. You can use `find . -type d -name node_modules -prune -o -print` to list all folders excluding `node_modules`.
 - Use `bun` instead of `npm`. And `bun` instead of `vitest` when `vitest` is not used.
+- When working with python, always make sure you are in a venv (`uv`) before installing dependencies or running the script.
 - When given an url, use `curl` to get the page content, set `Accept: text/markdown` header to get the page content in markdown format.
 - When user gives you a github repo link, if you have to search something in it. Clone it in a temporaty folder and do your research in that folder.
 - Keep things simple. A function should have a single purpose and be as short as possible. Do not make huge index or barrel files, split into smaller files if needed to make the code more readable and maintainable.

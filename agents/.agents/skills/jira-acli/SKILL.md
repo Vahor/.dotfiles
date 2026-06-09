@@ -25,19 +25,20 @@ When a request requires Jira information, use the Atlassian CLI command `acli` f
 For general work-item context, fetch and report only these fields unless the user explicitly asks for more:
 
 - `summary`
+- `parent`
 - `description`
 - Design: `customfield_10134`
 - Validation: `customfield_10170`
 - `subtasks`
 
-Do not fetch, list, or summarize other metadata fields such as status, assignee, reporter, priority, issue type, created, updated, or parent unless explicitly requested.
+Do not fetch, list, or summarize other top-level metadata fields such as status, assignee, reporter, priority, issue type, created, or updated unless explicitly requested.
 
 `description`, Design, and Validation are usually Atlassian Document Format (ADF). Do not show raw JSON unless the user asks for it.
 
 Render work-item JSON with the local Bun transformer. It must always be used as a pipe transform; it does not call `acli` itself.
 
 ```bash
-acli jira workitem view <ISSUE_KEY> --fields "summary,description,customfield_10134,customfield_10170,subtasks" --json \
+acli jira workitem view <ISSUE_KEY> --fields "summary,parent,description,customfield_10134,customfield_10170,subtasks" --json \
   | jira-workitem-field-md
 ```
 
@@ -46,18 +47,15 @@ For a single field, fetch the raw Jira field id and pass the readable alias to t
 ```bash
 acli jira workitem view <ISSUE_KEY> --fields "customfield_10134" --json \
   | jira-workitem-field-md
-
-acli jira workitem view <ISSUE_KEY> --fields "customfield_10170" --json \
-  | jira-workitem-field-md
 ```
 
-Transformer aliases: `summary`, `description`, `design`, `validation`, `subtasks`.
+Transformer aliases: `summary`, `parent`, `description`, `design`, `validation`, `subtasks`.
 
 ## Response guidance
 
 - Return the requested Jira field content as-is from `acli` / `jira-workitem-field-md`. Do not summarize, rephrase, restructure, or otherwise transform the content.
 - MUST paste the complete transformer output for the requested fields. Do not omit, condense, reorder, or skip any section, bullet list, paragraph, or subtask, even when the field is long.
 - If output is too long for the chat/interface, say that explicitly and offer to write it to a file; never selectively summarize.
-- For general issue lookups, include only summary, description, Design, Validation, and subtasks.
+- For general issue lookups, include only summary, parent, description, Design, Validation, and subtasks.
 - Mention the command used when it helps the user verify or repeat the result.
 - Do not invent Jira data when `acli` cannot retrieve it.

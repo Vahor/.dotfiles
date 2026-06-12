@@ -3,16 +3,25 @@ name: plan
 description: 'How to plan for a task. Use this skill when asked to implement a task or a feature.'
 ---
 
+## Information-gathering guardrails
 
-0. Check only obvious/current-directory planning guidance: `AGENTS.md`, `PLAN.md`, `SEARCH.md`, and `QUESTIONS.md`. Do not search recursively. If `PLAN.md` or `QUESTIONS.md` is present, ask if it is up to date. If `AGENTS.md` or `docs/` is present or explicitly named, read it as repo guidance.
+- Once in "search"/"plan" phase, inform user on what you are looking for. And base your search on that information. Make a `SEARCH.md` to document your search.
 
-1. **Non-negotiable first step:** understand the scope before planning. If the user gives a Jira issue key/URL, first fetch the Jira issue details needed to understand the task, following the Jira skill's field/output limits. Then ask clarifying questions based on that ticket. If the user does not give a Jira issue, ask clarifying questions before any task-specific work. Do **not** read repository files, run implementation-oriented shell commands, or gather code context before asking those questions and waiting for the user's answer. The only exceptions before the first questions are reading this skill file itself, reading obvious/current-directory `AGENTS.md` / `PLAN.md` / `QUESTIONS.md`, and fetching the provided Jira issue. Write a `QUESTIONS.md` file with responses to these questions after the user answers, in there write the full question and full answer.
+- If a found information does not match what was in `AGENTS.md` or is clearly missing to understand the codebase, add it to `AGENTS.md` and update the plan. When an information is important to understand the structure, create a `docs/` folder in the repo and put the information there. Check [./ADR-FORMAT.md](./ADR-FORMAT.md) for more details.
+
+## Plan
+
+0. Check only obvious/current-directory planning guidance: `README.md`, `CONTRIBUTING.md`, `AGENTS.md`, `PLAN.md`, `SEARCH.md`, and `QUESTIONS.md` and `docs/` folder. When checking an existing `PLAN.md`, or any plan-related file, ask the user if it is up to date.
+
+1. **Non-negotiable first step:** understand the scope before planning. If the user gives a Jira issue key/URL, first fetch the Jira issue details needed to understand the task, following the Jira skill's field/output limits. Then ask clarifying questions based on that ticket. If the user does not give a Jira issue, ask clarifying questions before any task-specific work. 
+You can read repository files, `docs` folder, run implementation-oriented shell commands, or gather code context before asking those questions. Do not look for at the whole codebase, ask guidance questions instead. But do not start anything else. If you had a question and answer it yourself, still ask the user if the answer is correct. 
+Write a `QUESTIONS.md` file with responses to these questions after the user answers, in there write the full question and full answer.
 
 1.1 If the user does not answer each question, or answers with a vague response, ask clarifying questions until the user provides a clear answer for every question.
 
 1.2 If you have many questions, ask them one by one, as a previous anwser may influence the next question.
 
-2. After the user answers, gather only the additional context needed for the plan. Default context budget: read at most 3 targeted files or 500 lines total. If the relevant files are not obvious from the user's answers or `AGENTS.md`, ask the user which files to inspect instead of searching. Increase this budget only after explicit user approval. Then break down the task into smaller, manageable subtasks. Use the following format:
+2. After the user answers, gather only the additional context needed for the plan. Then break down the task into smaller, manageable subtasks. Use the following format:
 
 ```
 # Step 1: Task description
@@ -44,14 +53,10 @@ If a question can be answered by exploring the codebase, explore the codebase in
 
 Update the plan and questions file with the user's answers.
 
+2.2 If a subtask is complex, ask the user if they want a minimal version first. In that case note to use the `minimal-solution` skill for that part and make an new subtask for the minimal version. The next step is to possibly to implement the full version.
+
 3. For each subtask, define the specific goals and deliverables. Be clear, which files will be impacted, and how the task will be accomplished.
 
 4. Ask for confirmation before writing the plan to a PLAN.md file. Do not create or update PLAN.md until the user explicitly approves the proposed plan. Refer to PLAN.md when doing the task.
 
 5. One a task is done, do not go on the next task unless specifically asked to do so. Ask for confirmation before moving on. Update plan to mark what was done and what was skipped.
-
-## Information-gathering guardrails
-
-- Once in "search"/"plan" phase, inform user on what you are looking for. And base your search on that information. Make a `SEARCH.md` to document your search.
-
-- If a found information does not match what was in `AGENTS.md` or is clearly missing to understand the codebase, add it to `AGENTS.md` and update the plan. If needed create a `docs/` folder in the repo and put the information there. Check [./ADR-FORMAT.md](./ADR-FORMAT.md) for more details.

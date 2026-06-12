@@ -16,6 +16,14 @@ return {
           GitSignsDeleteVirtLn = { fg = colors.red, bg = '#3f2631' },
           GitSignsDeleteVirtLnInLine = { bg = '#6b2d3b' },
           GitSignsVirtLnum = { fg = colors.overlay1, bg = '#3f2631' },
+
+          -- fff
+          FffGitModified = { fg = colors.yellow },
+          FffGitStaged = { fg = colors.green },
+          FffGitUntracked = { fg = colors.blue },
+          FffGitDeleted = { fg = colors.red },
+          FffGitRenamed = { fg = colors.mauve },
+          FffGitIgnored = { fg = colors.overlay0 },
         }
       end,
       integrations = {

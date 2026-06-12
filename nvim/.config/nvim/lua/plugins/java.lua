@@ -1,6 +1,7 @@
 return {
   {
     'mfussenegger/nvim-jdtls',
+    enabled = false,
     config = function()
       local home = os.getenv 'HOME'
 
@@ -85,9 +86,7 @@ return {
             '-Xms1G',
             '-Xmx4G',
             -- Lombok plugin
-            '-javaagent:'
-              .. home
-              .. '/.local/share/eclipse/lombok.jar',
+            '-javaagent:' .. home .. '/.local/share/eclipse/lombok.jar',
             '-jar',
             vim.fn.glob(jdtls_home .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
             '-configuration',

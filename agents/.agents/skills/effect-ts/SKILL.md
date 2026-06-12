@@ -27,6 +27,10 @@ For detailed patterns and examples, see:
 - [Schema](./references/schema.md) - Data validation with encode/decode
 - [Resources](./references/resources.md) - Resource management with acquireRelease and Scope
 
+For V3 to V4 migrations, use:
+- [v3 to v4 Migration Guide](https://github.com/Effect-TS/effect-smol/blob/main/MIGRATION.md) — covers the overall transition
+- [Schema v4 Migration Guide](https://github.com/Effect-TS/effect-smol/blob/main/packages/effect/SCHEMA.md) — covers the Schema rewrite in detail
+
 ## The Effect Type
 
 The core type `Effect<Success, Error, Requirements>` represents a computation that:

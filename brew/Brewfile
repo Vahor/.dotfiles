@@ -34,7 +34,9 @@ brew "vim"
 brew "wget"
 brew "yt-dlp"
 brew "zsh-autosuggestions"
-brew "zsh-syntax-highlighting"
+tap "michel-kraemer/zsh-patina"
+brew "zsh-patina"
+
 
 # Casks
 cask "1password"
@@ -48,3 +50,4 @@ cask "keycastr"
 cask "orbstack"
 cask "rectangle"
 cask "shottr"
+

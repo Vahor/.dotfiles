@@ -28,14 +28,16 @@ compinit -C
 
 # ZSH plugins
 # The idea is to download the plugins with brew, and then load them manually
-# plugins=(zsh-autosuggestions zsh-syntax-highlighting)
 # prefix=$(brew --prefix)
 prefix="/opt/homebrew"
 homebrew_zsh_plugins="$prefix/share"
 dotfiles_zsh_plugins="$HOME/.dotfiles/zsh/plugins"
 
 source_if_exists "$homebrew_zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source_if_exists "$homebrew_zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source_if_exists "$dotfiles_zsh_plugins/fzf-tab/fzf-tab.plugin.zsh"
+
+# highlight
+export ZSH_PATINA_CONFIG_PATH="$HOME/.dotfiles/zsh/config/zsh-patina.toml"
+eval "$($prefix/bin/zsh-patina activate)"
 
 unset prefix homebrew_zsh_plugins dotfiles_zsh_plugins

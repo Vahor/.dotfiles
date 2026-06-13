@@ -24,6 +24,11 @@ return {
           FffGitDeleted = { fg = colors.red },
           FffGitRenamed = { fg = colors.mauve },
           FffGitIgnored = { fg = colors.overlay0 },
+
+          -- Search
+          IncSearch = { bg = '#FFF000', fg = '#1E1E2E' }, -- yellow bg, dark fg
+          Search = { bg = '#E6D800', fg = '#1E1E2E' }, -- slightly dimmer yellow
+          CurSearch = { bg = '#FFD700', fg = '#1E1E2E', bold = true }, -- gold, bold
         }
       end,
       integrations = {

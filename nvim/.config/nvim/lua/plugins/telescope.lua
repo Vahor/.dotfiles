@@ -146,7 +146,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- See `:help telescope` and `:help telescope.setup()`
     require('telescope').setup {
       defaults = {
-        file_ignore_patterns = { 'node_modules', 'vendor', 'generated' },
         dynamic_preview_title = true,
         path_display = filenameFirst,
         -- https://github.com/nvim-telescope/telescope.nvim/issues/3202#issuecomment-3335081083

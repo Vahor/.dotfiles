@@ -40,7 +40,6 @@ brew "zsh-patina"
 
 # Casks
 cask "1password"
-cask "alt-tab"
 cask "discord"
 cask "firefox"
 cask "ghostty"

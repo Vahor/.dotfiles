@@ -9,9 +9,9 @@
 - When given an url, use `curl` to get the page content, set `Accept: text/markdown` header to get the page content in markdown format.
 - When user gives you a github repo link, if you have to search something in it. Clone it in a temporaty folder and do your research in that folder.
 - Keep things simple. A function should have a single purpose and be as short as possible. Do not make huge index or barrel files, split into smaller files if needed to make the code more readable and maintainable.
+- Make sure the code you write follows the coding style of the project, check for existing pattern or ask for guidance if needed.
 - When refactoring a function or adding a constant, check if the update can help other functions, and if so update them.
 - Make sure the code or function is tested and performant, use `hyperfine` or `autocannon` to test the performance.
-
 
 # Important Notes
 

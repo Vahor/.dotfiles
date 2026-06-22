@@ -6,8 +6,13 @@ return {
     build = ':TSUpdate',
     config = function()
       local treesitter = require 'nvim-treesitter'
-      local ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'markdown_inline', 'vim', 'vimdoc' }
-      treesitter.install(ensure_installed)
+      local ensure_installed = require('nvim-treesitter.config').norm_languages(
+        { 'bash', 'c', 'html', 'lua', 'markdown', 'markdown_inline', 'vim', 'vimdoc' },
+        { unsupported = true, installed = true }
+      )
+      if #ensure_installed > 0 then
+        treesitter.install(ensure_installed)
+      end
 
       ---@param buf integer
       ---@param language string

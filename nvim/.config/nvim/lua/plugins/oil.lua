@@ -1,6 +1,8 @@
 return {
   {
     'stevearc/oil.nvim',
+    cmd = 'Oil',
+    keys = { { '<C-e>', '<cmd>Oil<CR>', desc = 'Open OilVim' } },
     opts = {
       watch_for_changes = true,
       view_options = {

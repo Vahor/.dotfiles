@@ -7,5 +7,6 @@ vim.g.diffs = {
 return {
   {
     'barrettruth/diffs.nvim',
+    event = { 'BufReadPost', 'BufNewFile' },
   },
 }

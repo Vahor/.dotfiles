@@ -2,6 +2,11 @@
 ---@type LazySpec
 return {
   'jake-stewart/multicursor.nvim',
+  event = 'VeryLazy',
+  keys = {
+    { '<leader>mr', desc = '[M]ulticursors: [R]estore cursors' },
+    { '<leader>ma', desc = '[M]ulticursors: [A]dd all matches' },
+  },
   config = function()
     local mc = require 'multicursor-nvim'
 

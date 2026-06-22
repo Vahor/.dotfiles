@@ -3,6 +3,7 @@ return {
     -- add color on hex, rgb, hsl, css colors
     'catgoose/nvim-colorizer.lua',
     name = 'nvim-colorizer-catgoose',
+    event = 'BufReadPost',
     opts = {},
   },
   {

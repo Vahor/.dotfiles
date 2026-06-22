@@ -1,6 +1,7 @@
 return {
   'ninetyfive-gg/ninetyfive.nvim',
   -- enabled = false,
+  event = 'VeryLazy',
   version = '*', -- use stable version, or `false` for dev version
   config = function()
     require('ninetyfive').setup {

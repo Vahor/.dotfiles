@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.79.3",
-  "defaultProvider": "deepseek",
-  "defaultModel": "deepseek-v4-pro",
-  "defaultThinkingLevel": "xhigh",
+  "lastChangelogVersion": "0.80.6",
+  "defaultProvider": "lmstudio",
+  "defaultModel": "google/gemma-4-12b-qat",
+  "defaultThinkingLevel": "high",
   "quietStartup": true,
   "packages": [
     "npm:pi-powerline-footer",
@@ -12,7 +12,9 @@
   "enabledModels": [
     "mistral/mistral-medium-latest",
     "deepseek/deepseek-v4-pro",
-    "lmstudio/google/gemma-4-26b-a4b",
+    "lmstudio/google/gemma-4-12b-qat",
+    "lmstudio/google/gemma-4-26b-a4b-qat",
     "openai-codex/gpt-5.5"
-  ]
+  ],
+  "theme": "dark"
 }

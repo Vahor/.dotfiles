@@ -6,8 +6,23 @@
       "apiKey": "lm-studio",
       "models": [
         {
-          "id": "google/gemma-4-26b-a4b",
-          "input": ["text", "image"]
+          "id": "google/gemma-4-12b-qat",
+          "input": ["text", "image"],
+          "reasoning": true,
+          "contextWindow": 32768,
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": null,
+            "medium": null,
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          }
+        },
+        {
+          "id": "google/gemma-4-26b-a4b-qat",
+          "input": ["text", "image"],
+          "reasoning": true
         }
       ]
     }

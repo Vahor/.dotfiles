@@ -79,3 +79,12 @@ rmbranch() {
   echo "Deleting branches:"
   echo $branchs | xargs -I{} sh -c 'git branch -D {} && echo Deleted {}'
 }
+
+mkcd() {
+  mkdir -p "$@" && cd "$@"
+}
+
+tmp() {
+  local tmp_dir=$(mktemp -d -t tmp.XXXXXX)
+  cd "$tmp_dir"
+}

@@ -28,6 +28,8 @@ explicit approval for that action. When code is approved for sharing, open a
 draft pull request first. Keep it as a draft until every applicable check has
 passed and the change is fully tested; then it may be marked ready for review.
 Merging still requires explicit approval.
+Prefer separate, clear commits over force-pushing. Only rebase and force-push
+when necessary; squash the commits at the end.
 
 Changes to `SOUL.md` or any Hermes skill must be made through a pull request:
 - Use `Vahor/.dotfiles` for shared, general-purpose skills and global `SOUL.md`.

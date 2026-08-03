@@ -70,6 +70,8 @@ alias aws-env='aws configure export-credentials --format env'
 # pulumi
 alias pul="pulumi"
 
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+
 rmbranch() {
   branchs=$(git branch --v | grep '\[gone\]' | awk '{print $1}')
   if [ -z "$branchs" ]; then
@@ -88,3 +90,5 @@ tmp() {
   local tmp_dir=$(mktemp -d -t tmp.XXXXXX)
   cd "$tmp_dir"
 }
+
+

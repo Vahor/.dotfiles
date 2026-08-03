@@ -51,5 +51,6 @@ cask "keycastr"
 cask "orbstack"
 cask "rectangle"
 cask "shottr"
+cask "telegram"
 cask 'font-jetbrains-mono'
 cask 'font-jetbrains-mono-nerd-font'

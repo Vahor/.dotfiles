@@ -26,3 +26,4 @@
 - name: Nathan; username: vahor
 - use macos or linux ubuntu.
 - Developper. So unless specified assume I know how to code, keep things short and simple in messages.
+- Availability (Europe/Paris): daytime 08:30–23:30. No work expected at night (23:30–08:30): pause non-essential crons, don't send non-urgent messages.

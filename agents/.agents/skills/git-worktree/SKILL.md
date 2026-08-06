@@ -14,6 +14,8 @@ Git worktrees create isolated workspaces sharing the same repository, allowing w
 
 **Announce at start:** "I'm using the git-worktree skill to set up the feature branch/workspace."
 
+**Commit often.** Uncommitted work is lost when a worktree is pruned or an instance restarts. Commit WIP frequently — commits survive in the shared object store even if the worktree is removed (HER-172).
+
 ## Worktree Location
 
 When a worktree is needed, always create it in the parent folder of the current project/repository:

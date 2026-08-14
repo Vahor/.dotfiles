@@ -43,7 +43,7 @@ brew "zsh-patina"
 # Casks
 cask "1password"
 cask "discord"
-cask "firefox"
+cask "firefox@developer-edition"
 cask "ghostty"
 cask "gimp"
 cask "iina"

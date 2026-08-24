@@ -1,6 +1,6 @@
 ---
 name: git-worktree
-description: Use when starting feature work or creating a feature branch - creates a branch in-place when current branch is main/develop, otherwise creates an isolated git worktree next to the current project. Triggers on worktree, git worktree, isolated workspace, or creating a new branch for feature work.
+description: Use when starting feature work or creating a feature branch - creates a branch in-place when current branch is main/develop, otherwise creates an isolated worktree under the repository's .worktree directory. Triggers on worktree, git worktree, isolated workspace, or creating a new branch for feature work.
 user-invocable: true
 ---
 
@@ -10,16 +10,16 @@ user-invocable: true
 
 Git worktrees create isolated workspaces sharing the same repository, allowing work on multiple branches simultaneously without switching.
 
-**Core principle:** If the current branch is `main` or `develop`, create the requested feature branch in the current repository. Otherwise, create a sibling worktree for the requested branch and verify a clean baseline.
+**Core principle:** If the current branch is `main` or `develop`, create the requested feature branch in the current repository. Otherwise, create a worktree under `<repo-root>/.worktree/` for the requested branch and verify a clean baseline.
 
 **Announce at start:** "I'm using the git-worktree skill to set up the feature branch/workspace."
 
 ## Worktree Location
 
-When a worktree is needed, always create it in the parent folder of the current project/repository:
+When a worktree is needed, always create it under the repository's `.worktree` directory:
 
 ```bash
-<parent-folder>/<project-name>-worktree-<branchname>
+<repo-root>/.worktree/<branchname>
 ```
 
 `branchname` means: use the JIRA issue key if available, otherwise use the branch name.
@@ -28,32 +28,27 @@ Examples:
 
 ```bash
 # Repo root: ~/dev/myproject
-# Worktree:  ~/dev/myproject-worktree-feature-auth
+# Worktree:  ~/dev/myproject/.worktree/feature-auth
 
 # Repo root: ~/dev/vahor/bidule
-# Worktree:  ~/dev/vahor/bidule-worktree-feature-auth
+# Worktree:  ~/dev/vahor/bidule/.worktree/feature-auth
 ```
 
 Rules:
-- Use the parent folder of the git repository root, not a fixed global directory.
-- If the repo is nested under `~/dev`, keep the worktree in that same parent folder.
-- Do not suggest or use project-local `.worktrees/` or `worktrees/` directories.
-- Do not suggest or use `~/.config/superpowers/worktrees/`.
+- Use `.worktree/` at the git repository root, not a fixed global or sibling directory.
+- Do not suggest or use `.worktrees/`, `worktrees/`, or `~/.config/superpowers/worktrees/`.
 - Do not ask where to create the worktree unless the user explicitly requests a different location.
-- The folder suffix is `branchname`: the JIRA issue key if available, otherwise the branch name.
+- The worktree folder name is `branchname`: the JIRA issue key if available, otherwise the branch name.
 - Sanitize `branchname` for folder names, for example replace `/` and spaces with `-`.
 - Do not rely on an environment variable named `BRANCH_NAME` unless it has been explicitly set.
-
-Because this location is outside the repository, no `.gitignore` verification is required.
+- Verify `.worktree/` is ignored before creating a worktree. Add it to the repository's root `.gitignore` if needed.
 
 ## Creation Steps
 
-### 1. Detect Project Name, Parent Folder, and Current Branch
+### 1. Detect Repository Root and Current Branch
 
 ```bash
 repo_root=$(git rev-parse --show-toplevel)
-project=$(basename "$repo_root")
-parent=$(dirname "$repo_root")
 current_branch=$(git branch --show-current)
 ```
 
@@ -88,21 +83,29 @@ git switch "$branch"
 
 ### 4. Determine Worktree Path
 
-For any current branch other than `main` or `develop`, create a sibling worktree for the requested branch.
+For any current branch other than `main` or `develop`, create a worktree under `.worktree/`.
 
 ```bash
 jira_issue=$(printf "%s" "$branch" | grep -Eo '[A-Z][A-Z0-9]+-[0-9]+' | head -n 1 || true)
 branchname="${jira_issue:-$branch}"
 branchname=$(printf "%s" "$branchname" | sed -E 's#[/[:space:]]+#-#g')
-path="$parent/${project}-worktree-${branchname}"
+path="$repo_root/.worktree/$branchname"
 ```
 
 Examples:
 
 ```bash
-# branch=feature/auth       -> branchname=feature-auth
-# branch=feature/APP-123-x  -> branchname=APP-123
-# branch=APP-123            -> branchname=APP-123
+# branch=feature/auth       -> .worktree/feature-auth
+# branch=feature/APP-123-x  -> .worktree/APP-123
+# branch=APP-123            -> .worktree/APP-123
+```
+
+Ensure the directory is ignored before creating it:
+
+```bash
+if ! git -C "$repo_root" check-ignore -q .worktree/.gitkeep; then
+  printf '\n.worktree/\n' >> "$repo_root/.gitignore"
+fi
 ```
 
 ### 5. Create Worktree
@@ -161,8 +164,8 @@ Ready to implement <feature-name>
 | Situation | Action |
 |-----------|--------|
 | Current branch is `main` or `develop` | Create requested feature branch in the current repo; no worktree |
-| Current branch is anything else | Use `<repo-parent>/<project>-worktree-<branchname>` |
-| Repo is `~/dev/vahor/bidule` | Use `~/dev/vahor/bidule-worktree-<branchname>` |
+| Current branch is anything else | Use `<repo-root>/.worktree/<branchname>` |
+| Repo is `~/dev/vahor/bidule` | Use `~/dev/vahor/bidule/.worktree/<branchname>` |
 | Branch has `/` | Replace `/` with `-` in folder name |
 | Branch has JIRA code | Use JIRA code as `branchname` |
 | Tests fail during baseline | Report failures + ask |

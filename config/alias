@@ -11,8 +11,6 @@ alias vi="nvim"
 alias v="nvim"
 alias niff="nvim -d"
 
-alias po="poetry"
-
 alias cat="bat"
 
 alias k=kubectl
@@ -67,8 +65,13 @@ alias gd="git diff"
 alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" ~/.aws/config | fzf)'
 alias aws-env='aws configure export-credentials --format env'
 
-# pulumi
-alias pul="pulumi"
+# bao
+bao-login() {
+  export BAO_ADDR=https://srv-1:8200
+  export BAO_TOKEN="$(ssh root@srv-1 'cat /opt/openbao/backup/operator-token')"
+  export BAO_CACERT=$HOME/.config/openbao/ca.crt
+  bao status
+}
 
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 

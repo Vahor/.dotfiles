@@ -5,6 +5,7 @@
 # brew "maven"
 brew "bash"
 brew "bat"
+brew "chafa"
 brew "cmake"
 brew "dasel"
 brew "direnv"

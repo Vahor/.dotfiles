@@ -9,9 +9,13 @@
 - When given an url, use `curl` to get the page content, set `Accept: text/markdown` header to get the page content in markdown format.
 - When user gives you a github repo link, if you have to search something in it. Clone it in a temporaty folder and do your research in that folder.
 - Keep things simple. A function should have a single purpose and be as short as possible. Do not make huge index or barrel files, split into smaller files if needed to make the code more readable and maintainable.
+- Think long term. Prefer solutions that still hold up as the codebase grows instead of quick fixes. Fix the root cause, don't paper over it with a hack.
+- Write as few comments as possible, ideally none. A comment is only warranted as a `// TODO`, `// HACK`, `// NOTE` (or the language's equivalent) marker; never restate what the code does.
 - Make sure the code you write follows the coding style of the project, check for existing pattern or ask for guidance if needed.
 - When refactoring a function or adding a constant, check if the update can help other functions, and if so update them.
-- Make sure the code or function is tested and performant, use `hyperfine` or `autocannon` to test the performance.
+- Write fewer tests. When tests are needed, do TDD: write the failing test first, then the code to make it pass.
+- Never add a test whose only purpose is to assert that something was deleted or removed.
+- Make sure the code or function is performant, use `hyperfine` or `autocannon` to test the performance.
 
 # Important Notes
 

@@ -36,13 +36,6 @@ if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
 
-# https://github.com/rupa/z
-if command -v brew >/dev/null 2>&1; then
-  z_profile="$(brew --prefix)/etc/profile.d/z.sh"
-  [ -f "$z_profile" ] && source "$z_profile"
-  unset z_profile
-fi
-
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 

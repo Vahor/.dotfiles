@@ -19,7 +19,6 @@ eval "$(starship init zsh)"
 zsh_functions="$HOME/.dotfiles/zsh/functions"
 source_if_exists "$zsh_functions/lazy-conda-init.zsh"
 source_if_exists "$zsh_functions/oh-my-zsh.zsh"
-source_if_exists "$zsh_functions/gh-copilot-alias.zsh"
 unset zsh_functions
 
 # https://mise.jdx.dev/getting-started.html
@@ -27,8 +26,8 @@ if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
 fi
 
-if [[ -t 0 && -f ~/.fzf.zsh ]]; then
-  source ~/.fzf.zsh
+if [[ -t 0 ]] && command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
 fi
 
 # https://direnv.net/

@@ -65,15 +65,6 @@ alias gd="git diff"
 alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" ~/.aws/config | fzf)'
 alias aws-env='aws configure export-credentials --format env'
 
-# bao
-bao-login() {
-  # The control plane binds loopback and the Tailscale address only, and tailnet
-  # traffic is already WireGuard-encrypted, so there is no CA to point at.
-  export BAO_ADDR=http://srv-1.taild19abb.ts.net:8200
-  export BAO_TOKEN="$(cat "$HOME/.config/openbao/operator-token")"
-  bao status
-}
-
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 rmbranch() {

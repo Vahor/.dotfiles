@@ -41,7 +41,7 @@ Agent instructions, skills, and Pi configuration are maintained separately in [v
 git submodule update --init --recursive agents
 ```
 
-See `agents/README.md` for the instruction layout, Codex and Pi links, and optional external Pi skills. Pi keeps sessions, credentials, and other runtime state directly in `~/.pi`, while its settings come from the submodule. Update agent content inside the submodule, then record its new commit in dotfiles.
+See `agents/README.md` for the instruction and skill layout plus the Codex and Pi links. Pi keeps sessions, credentials, and other runtime state directly in `~/.pi`, while its settings come from the submodule. Update agent content inside the submodule, then record its new commit in dotfiles.
 
 ## Shell startup benchmark
 

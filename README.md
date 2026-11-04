@@ -35,11 +35,13 @@ Then stow the configured packages:
 ./install
 ```
 
-Install external Pi skills listed in `agents/external-skills` into `~/.pi/agent/skills/external/`:
+Agent instructions and skills are maintained separately in [vahor/agents](https://github.com/vahor/agents), checked out at `agents/` as a Git submodule. The `agents` package remains in `STOW_FOLDERS`, so `./install` stows it alongside the other packages.
 
-```bash
-./agents/install-external-skills
+```sh
+git submodule update --init --recursive agents
 ```
+
+See `agents/README.md` for the instruction layout, Codex link, and optional external Pi skills. Update agent content inside the submodule, then record its new commit in dotfiles.
 
 ## Shell startup benchmark
 

@@ -1,3 +1,7 @@
 [submodule "zsh/plugins/fzf-tab"]
 	path = zsh/plugins/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab
+
+[submodule "agents"]
+	path = agents
+	url = git@github.com:vahor/agents.git

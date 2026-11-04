@@ -4,6 +4,8 @@ source init
 
 pushd $DOTFILES
 
+git submodule update --init --recursive agents || exit 1
+
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
     stow -D $folder

@@ -35,13 +35,13 @@ Then stow the configured packages:
 ./install
 ```
 
-Agent instructions and skills are maintained separately in [vahor/agents](https://github.com/vahor/agents), checked out at `agents/` as a Git submodule. The `agents` package remains in `STOW_FOLDERS`, so `./install` stows it alongside the other packages.
+Agent instructions, skills, and Pi configuration are maintained separately in [vahor/agents](https://github.com/vahor/agents), checked out at `agents/` as a Git submodule. The `agents` package remains in `STOW_FOLDERS`, so `./install` stows it alongside the other packages.
 
 ```sh
 git submodule update --init --recursive agents
 ```
 
-See `agents/README.md` for the instruction layout, Codex link, and optional external Pi skills. Update agent content inside the submodule, then record its new commit in dotfiles.
+See `agents/README.md` for the instruction layout, Codex and Pi links, and optional external Pi skills. Pi keeps sessions, credentials, and other runtime state directly in `~/.pi`, while its settings come from the submodule. Update agent content inside the submodule, then record its new commit in dotfiles.
 
 ## Shell startup benchmark
 

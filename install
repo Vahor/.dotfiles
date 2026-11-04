@@ -8,8 +8,12 @@ git submodule update --init --recursive agents || exit 1
 
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
-    stow -D $folder
-    stow --dotfiles $folder
+    # The agents package is linked file by file so Pi keeps its runtime state in ~/.pi.
+    stow_flags=""
+    [[ $folder == agents ]] && stow_flags="--no-folding"
+
+    stow $stow_flags -D $folder
+    stow $stow_flags --dotfiles $folder
     echo "Adding $folder"
 done
 popd

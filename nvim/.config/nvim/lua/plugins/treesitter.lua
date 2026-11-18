@@ -40,7 +40,7 @@ return {
 
         -- Enable treesitter based indentation
         if has_indent_query then
-          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
       end
 

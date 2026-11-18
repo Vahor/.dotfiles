@@ -13,9 +13,6 @@ return {
     opts = {
       sources = {
         default = { 'lsp', 'buffer' },
-        per_filetype = {
-          markdown = { 'markview' },
-        },
       },
 
       signature = { enabled = true },

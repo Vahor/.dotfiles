@@ -4,7 +4,7 @@ local root = vim.fn.getcwd() .. '/nvim/.config/nvim/'
 
 local filetype_callback, install_callback
 package.preload['nvim-treesitter.config'] = function()
-  return { norm_languages = function() end }
+  return { norm_languages = function() return {} end }
 end
 package.preload['nvim-treesitter'] = function()
   return {
